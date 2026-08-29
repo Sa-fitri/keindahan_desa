@@ -6,10 +6,12 @@
 }
 
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    background: #f6f3eb;
-    color: #30483b;
-    line-height: 1.7;
+    background-image: url("background-sawah.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 /* NAVBAR */
