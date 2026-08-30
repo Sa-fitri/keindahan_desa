@@ -784,3 +784,172 @@ RESPONSIVE HP
     }
 
 }
+/* =========================================
+   SEKILAS TENTANG DESA
+========================================= */
+
+.sekilas {
+    background: #f7f8f3;
+    text-align: center;
+    padding: 80px 8%;
+}
+
+.sekilas-content {
+    max-width: 750px;
+    margin: auto;
+}
+
+.sekilas-label {
+    color: #6c8c57;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.sekilas h2 {
+    color: #355c48;
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+.sekilas p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.sekilas .btn {
+    margin-top: 25px;
+}
+
+
+/* =========================================
+   YANG BISA KAMU TEMUKAN
+========================================= */
+
+.temukan {
+    background: #ffffff;
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.temukan-title {
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+.temukan-title .label {
+    color: #6c8c57;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.temukan-title h2 {
+    color: #355c48;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.temukan-title p {
+    color: #777;
+    line-height: 1.7;
+}
+
+.temukan-container {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.temukan-card {
+    background: #f7faf5;
+    padding: 30px 20px;
+
+    border-radius: 22px;
+    border: 1px solid #e0e9df;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+
+    transition: 0.3s;
+}
+
+.temukan-card:hover {
+    transform: translateY(-7px);
+}
+
+.temukan-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8f0e6;
+    border-radius: 50%;
+
+    font-size: 30px;
+}
+
+.temukan-card h3 {
+    color: #355c48;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.temukan-card p {
+    color: #707570;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   SEKILAS & TEMUKAN DI HP
+========================================= */
+
+@media (max-width: 768px) {
+
+    .sekilas {
+        padding: 65px 7%;
+    }
+
+    .sekilas h2 {
+        font-size: 29px;
+    }
+
+    .temukan {
+        padding: 65px 6%;
+    }
+
+    .temukan-title h2 {
+        font-size: 29px;
+    }
+
+    .temukan-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .temukan-card {
+        padding: 25px 15px;
+    }
+
+    .temukan-card h3 {
+        font-size: 17px;
+    }
+
+    .temukan-card p {
+        font-size: 13px;
+    }
+    }
