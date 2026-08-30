@@ -284,3 +284,220 @@ footer {
         font-size: 38px;
     }
       }
+/* =========================
+   HALAMAN KEHIDUPAN
+========================= */
+
+.kehidupan {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 45px 0 70px;
+}
+
+.kehidupan .title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.kehidupan .title h2 {
+    font-size: 32px;
+    color: #304b35;
+    margin-bottom: 8px;
+}
+
+.kehidupan .title p {
+    color: #718078;
+    font-size: 16px;
+}
+
+
+/* CARD KEHIDUPAN */
+
+.life-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-bottom: 25px;
+
+    box-shadow: 0 10px 30px rgba(50, 70, 50, 0.08);
+}
+
+
+/* FOTO */
+
+.life-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+
+/* TEKS */
+
+.life-text {
+    padding: 25px 30px 30px;
+    position: relative;
+}
+
+.life-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8efd9;
+
+    border-radius: 50%;
+
+    font-size: 27px;
+
+    margin-top: -50px;
+
+    position: relative;
+
+    border: 5px solid white;
+}
+
+.life-text h3 {
+    color: #304b35;
+    font-size: 24px;
+    margin: 12px 0 5px;
+}
+
+.life-text p {
+    color: #718078;
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.7;
+}
+
+
+/* RINGKASAN */
+
+.life-summary {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-top: 30px;
+}
+
+.life-summary div {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 28px 20px;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(50, 70, 50, 0.07);
+}
+
+.life-summary span {
+    display: block;
+
+    font-size: 40px;
+
+    margin-bottom: 8px;
+}
+
+.life-summary strong {
+    display: block;
+
+    font-size: 24px;
+
+    color: #3f754b;
+}
+
+.life-summary p {
+    color: #718078;
+
+    margin: 5px 0 0;
+}
+
+
+/* MENU AKTIF */
+
+nav ul li a.active {
+    background: #6c8c57;
+    color: white;
+    border-radius: 25px;
+}
+
+
+/* =========================
+   TAMPILAN HP
+========================= */
+
+@media (max-width: 600px) {
+
+    .kehidupan {
+        width: 90%;
+        padding-top: 35px;
+    }
+
+    .kehidupan .title {
+        text-align: left;
+    }
+
+    .kehidupan .title h2 {
+        font-size: 27px;
+    }
+
+    .kehidupan .title p {
+        font-size: 15px;
+    }
+
+    .life-card {
+        border-radius: 22px;
+    }
+
+    .life-card img {
+        height: 220px;
+    }
+
+    .life-text {
+        padding: 22px;
+    }
+
+    .life-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .life-text h3 {
+        font-size: 21px;
+    }
+
+    .life-text p {
+        font-size: 14px;
+    }
+
+    .life-summary {
+        gap: 12px;
+    }
+
+    .life-summary div {
+        padding: 22px 10px;
+    }
+
+    .life-summary span {
+        font-size: 32px;
+    }
+
+    .life-summary strong {
+        font-size: 18px;
+    }
+
+    .life-summary p {
+        font-size: 13px;
+    }
+
+    }
