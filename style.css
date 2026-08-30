@@ -859,12 +859,17 @@ KAWASAN SEKITAR
 }
 
 .area-box {
+    background: white;
     padding: 20px;
-    min-height: 160px;
     border-radius: 12px;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    border: 1px solid #e0e0e0;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
 .area-icon {
     font-size: 28px;
     margin-bottom: 8px;
