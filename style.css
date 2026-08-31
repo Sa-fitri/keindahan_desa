@@ -2175,3 +2175,183 @@ RESPONSIVE HP
     }
 
     }
+/* =========================================
+   HALAMAN LOKASI
+========================================= */
+
+.lokasi-hero {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #6f8f5f, #9caf88);
+    color: white;
+}
+
+.lokasi-hero-content {
+    max-width: 650px;
+}
+
+.lokasi-hero-content span {
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.lokasi-hero-content h1 {
+    font-size: 38px;
+    margin: 12px 0;
+}
+
+.lokasi-hero-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* BAGIAN LOKASI */
+
+.lokasi-section {
+    padding: 55px 20px;
+    background: #f7f8f3;
+}
+
+.lokasi-card {
+    max-width: 850px;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 30px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.lokasi-icon {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5eddc;
+    border-radius: 16px;
+    font-size: 25px;
+}
+
+.lokasi-info {
+    flex: 1;
+}
+
+.lokasi-info h2 {
+    margin: 0 0 10px;
+    color: #405638;
+    font-size: 25px;
+}
+
+.lokasi-info > p {
+    margin: 0 0 22px;
+    color: #666;
+    line-height: 1.7;
+}
+
+
+/* DETAIL LOKASI */
+
+.lokasi-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 0;
+    border-top: 1px solid #edf0e9;
+}
+
+.lokasi-detail span {
+    font-size: 18px;
+}
+
+.lokasi-detail strong {
+    display: block;
+    color: #4d6543;
+    margin-bottom: 3px;
+}
+
+.lokasi-detail p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* TOMBOL GOOGLE MAPS */
+
+.btn-lokasi {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 11px 18px;
+    background: #6f8f5f;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-lokasi:hover {
+    background: #557247;
+    transform: translateY(-2px);
+}
+
+
+/* RESPONSIVE HP */
+
+@media (max-width: 600px) {
+
+    .lokasi-hero {
+        min-height: 250px;
+        padding: 45px 20px;
+    }
+
+    .lokasi-hero-content h1 {
+        font-size: 29px;
+    }
+
+    .lokasi-hero-content p {
+        font-size: 14px;
+    }
+
+    .lokasi-section {
+        padding: 35px 15px;
+    }
+
+    .lokasi-card {
+        padding: 22px;
+        gap: 16px;
+        border-radius: 18px;
+    }
+
+    .lokasi-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        border-radius: 13px;
+    }
+
+    .lokasi-info h2 {
+        font-size: 21px;
+    }
+
+    .lokasi-info > p {
+        font-size: 14px;
+    }
+
+    .btn-lokasi {
+        width: 100%;
+        text-align: center;
+        padding: 11px 0;
+    }
+    }
