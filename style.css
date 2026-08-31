@@ -1799,3 +1799,379 @@ RESPONSIVE HP
     }
 
         }
+/* =========================================
+   TENTANG DESA - REDESIGN
+========================================= */
+
+/* LATAR BAGIAN TENTANG */
+.content {
+    max-width: 950px;
+    margin: auto;
+}
+
+
+/* =========================================
+   KOTAK INFORMASI
+========================================= */
+
+.info-box {
+    background: rgba(255, 255, 255, 0.97);
+    padding: 26px 30px;
+    margin-bottom: 18px;
+
+    border-radius: 18px;
+    border: 1px solid #e2e9e3;
+
+    box-shadow: 0 6px 20px rgba(53, 92, 72, 0.08);
+}
+
+.info-box h2 {
+    color: #355c48;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    color: #59655f;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+
+/* =========================================
+   KARTU ADMINISTRATIF & PENDIDIKAN
+========================================= */
+
+.profile-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    align-items: center;
+
+    gap: 28px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    padding: 18px;
+    margin-bottom: 18px;
+
+    border-radius: 20px;
+
+    border: 1px solid #e1e9e2;
+
+    box-shadow: 0 7px 22px rgba(53, 92, 72, 0.08);
+
+    transition: 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 11px 26px rgba(53, 92, 72, 0.12);
+}
+
+.profile-image {
+    width: 100%;
+    height: 185px;
+
+    overflow: hidden;
+    border-radius: 15px;
+
+    background: #e8eee9;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+.profile-card:hover .profile-image img {
+    transform: scale(1.03);
+}
+
+.profile-text {
+    padding: 5px 10px;
+}
+
+.profile-text h2 {
+    color: #355c48;
+
+    font-size: 25px;
+
+    margin: 0 0 10px;
+}
+
+.profile-text p {
+    color: #59655f;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   KAWASAN SEKITAR
+========================================= */
+
+.area-section {
+    margin-top: 32px;
+
+    padding: 28px 0 5px;
+}
+
+.area-section h2 {
+    text-align: center;
+
+    color: #355c48;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.area-intro {
+    text-align: center;
+
+    max-width: 650px;
+
+    margin: 0 auto 22px;
+
+    color: #65716a;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   GRID KAWASAN
+========================================= */
+
+.area-container {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 14px;
+}
+
+
+/* =========================================
+   KOTAK KAWASAN
+========================================= */
+
+.area-box {
+    background: #ffffff;
+
+    padding: 17px 15px;
+
+    min-height: auto;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    border: 1px solid #e0e8e1;
+
+    box-shadow: 0 5px 16px rgba(53, 92, 72, 0.07);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    transition: 0.3s ease;
+}
+
+.area-box:hover {
+    transform: translateY(-3px);
+
+    border-color: #b9cdbb;
+
+    box-shadow: 0 9px 22px rgba(53, 92, 72, 0.11);
+}
+
+
+/* =========================================
+   ICON KAWASAN
+========================================= */
+
+.area-icon {
+    font-size: 22px;
+
+    margin-bottom: 4px;
+}
+
+
+/* =========================================
+   JUDUL KAWASAN
+========================================= */
+
+.area-box h3 {
+    color: #355c48;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    margin: 4px 0 5px;
+}
+
+
+/* =========================================
+   TEKS KAWASAN
+========================================= */
+
+.area-box p {
+    color: #68736c;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   HP - TENTANG DESA
+========================================= */
+
+@media (max-width: 768px) {
+
+    .content {
+        width: 92%;
+    }
+
+
+    /* KOTAK INFO */
+
+    .info-box {
+        padding: 21px 19px;
+
+        margin-bottom: 15px;
+
+        border-radius: 17px;
+    }
+
+    .info-box h2 {
+        font-size: 21px;
+    }
+
+    .info-box p {
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+
+    /* PROFIL */
+
+    .profile-card {
+        display: block;
+
+        padding: 14px;
+
+        margin-bottom: 15px;
+
+        border-radius: 18px;
+    }
+
+    .profile-image {
+        width: 100%;
+
+        height: 185px;
+
+        margin-bottom: 14px;
+
+        border-radius: 14px;
+    }
+
+    .profile-text {
+        padding: 2px 5px 6px;
+    }
+
+    .profile-text h2 {
+        font-size: 21px;
+
+        margin-bottom: 8px;
+    }
+
+    .profile-text p {
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+
+    /* KAWASAN */
+
+    .area-section {
+        margin-top: 25px;
+
+        padding: 20px 0 0;
+    }
+
+    .area-section h2 {
+        font-size: 27px;
+
+        margin-bottom: 7px;
+    }
+
+    .area-intro {
+        font-size: 13px;
+
+        line-height: 1.65;
+
+        margin-bottom: 17px;
+    }
+
+    .area-container {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 11px;
+
+        width: 100%;
+    }
+
+    .area-box {
+        padding: 15px 10px;
+
+        border-radius: 14px;
+    }
+
+    .area-icon {
+        font-size: 20px;
+
+        margin-bottom: 3px;
+    }
+
+    .area-box h3 {
+        font-size: 14px;
+
+        margin: 3px 0 4px;
+    }
+
+    .area-box p {
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+    }
