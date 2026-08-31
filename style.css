@@ -1411,3 +1411,9 @@ RESPONSIVE HP
     }
 
         }
+.nav-links a.active {
+    background-color: #7a9b68;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 25px;
+}
