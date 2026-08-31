@@ -953,3 +953,461 @@ RESPONSIVE HP
         font-size: 13px;
     }
     }
+/* =========================================
+   JELAJAH KEINDAHAN DESA
+========================================= */
+
+
+/* HERO */
+
+.beauty-hero {
+    min-height: 90vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: 130px 8% 80px;
+
+    background:
+        url("keindahan.jpg")
+        center/cover no-repeat;
+
+    color: white;
+}
+
+.beauty-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(25, 48, 38, 0.78),
+            rgba(25, 48, 38, 0.30)
+        );
+}
+
+.beauty-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 650px;
+}
+
+.beauty-label {
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+}
+
+.beauty-hero h1 {
+    font-size: 64px;
+
+    line-height: 1.05;
+
+    margin-bottom: 22px;
+}
+
+.beauty-hero-content > p:not(.beauty-label) {
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    max-width: 500px;
+
+    margin-bottom: 30px;
+}
+
+.beauty-btn {
+    display: inline-block;
+
+    padding: 13px 27px;
+
+    background: #d2b181;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.beauty-btn:hover {
+    background: #ad8a5d;
+
+    transform: translateY(-2px);
+}
+
+
+/* INTRO */
+
+.beauty-intro {
+    background: #f7f8f3;
+
+    text-align: center;
+
+    padding: 90px 8%;
+}
+
+.beauty-small-title,
+.beauty-heading > p {
+    color: #6c8c57;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+.beauty-intro h2 {
+    color: #355c48;
+
+    font-size: 38px;
+
+    margin-bottom: 20px;
+}
+
+.beauty-intro-text {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: #707570;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+}
+
+
+/* HEADING */
+
+.beauty-heading {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.beauty-heading h2 {
+    color: #355c48;
+
+    font-size: 36px;
+
+    margin-bottom: 10px;
+}
+
+.beauty-heading span {
+    color: #777;
+
+    font-size: 15px;
+}
+
+
+/* WAKTU TERBAIK */
+
+.beauty-time {
+    padding: 90px 8%;
+
+    background: white;
+}
+
+.time-grid {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.time-card {
+    background: #f7faf5;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.07);
+
+    transition: 0.3s;
+}
+
+.time-card:hover {
+    transform: translateY(-8px);
+}
+
+.time-card img {
+    width: 100%;
+
+    height: 260px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.time-content {
+    padding: 25px;
+}
+
+.time-content span {
+    font-size: 28px;
+}
+
+.time-content h3 {
+    color: #355c48;
+
+    font-size: 23px;
+
+    margin: 8px 0 12px;
+}
+
+.time-content p {
+    color: #707570;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* SUDUT-SUDUT */
+
+.corner-section {
+    padding: 90px 8%;
+
+    background: #f7f8f3;
+}
+
+.corner-grid {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.corner-card {
+    background: white;
+
+    padding: 30px 25px;
+
+    border-radius: 22px;
+
+    border: 1px solid #e0e9df;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,0.05);
+
+    transition: 0.3s;
+}
+
+.corner-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(0,0,0,0.09);
+}
+
+.corner-icon {
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #edf4ea;
+
+    border-radius: 50%;
+
+    font-size: 27px;
+
+    margin-bottom: 17px;
+}
+
+.corner-card h3 {
+    color: #355c48;
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+.corner-card p {
+    color: #737873;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* PENUTUP */
+
+.beauty-ending {
+    min-height: 420px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 8%;
+
+    background:
+        linear-gradient(
+            rgba(25,48,38,0.70),
+            rgba(25,48,38,0.70)
+        ),
+        url("senja.jpg")
+        center/cover no-repeat;
+
+    color: white;
+}
+
+.ending-content {
+    max-width: 700px;
+}
+
+.ending-content > p {
+    letter-spacing: 4px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+.ending-content h2 {
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+.ending-content span {
+    display: block;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   KEINDAHAN - HP
+========================================= */
+
+@media (max-width: 768px) {
+
+    .beauty-hero {
+        min-height: 80vh;
+
+        padding:
+            130px
+            7%
+            70px;
+    }
+
+    .beauty-hero h1 {
+        font-size: 43px;
+    }
+
+    .beauty-hero-content > p:not(.beauty-label) {
+        font-size: 16px;
+    }
+
+    .beauty-intro {
+        padding: 65px 7%;
+    }
+
+    .beauty-intro h2 {
+        font-size: 29px;
+    }
+
+    .beauty-time,
+    .corner-section {
+        padding: 65px 6%;
+    }
+
+    .beauty-heading h2 {
+        font-size: 29px;
+    }
+
+    .time-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .time-card img {
+        height: 230px;
+    }
+
+    .corner-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 15px;
+    }
+
+    .corner-card {
+        padding: 23px 17px;
+    }
+
+    .corner-card h3 {
+        font-size: 17px;
+    }
+
+    .corner-card p {
+        font-size: 13px;
+    }
+
+    .beauty-ending {
+        min-height: 380px;
+
+        padding: 65px 7%;
+    }
+
+    .ending-content h2 {
+        font-size: 31px;
+    }
+
+        }
