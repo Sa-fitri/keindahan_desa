@@ -2355,3 +2355,453 @@ RESPONSIVE HP
         padding: 11px 0;
     }
     }
+/* =========================================
+   LOKASI DESA - REDESIGN
+   Tambahkan di PALING BAWAH style.css
+========================================= */
+
+.lokasi-hero {
+    min-height: 390px;
+    margin-top: 95px;
+    padding: 80px 20px 70px;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(53, 92, 72, 0.82),
+            rgba(91, 120, 75, 0.72)
+        );
+
+    color: white;
+}
+
+/* Ornamen daun sederhana */
+.lokasi-hero::before {
+    content: "🌿";
+    position: absolute;
+    left: 7%;
+    bottom: 25px;
+    font-size: 65px;
+    opacity: 0.25;
+    transform: rotate(-20deg);
+}
+
+.lokasi-hero::after {
+    content: "🌾";
+    position: absolute;
+    right: 7%;
+    bottom: 20px;
+    font-size: 70px;
+    opacity: 0.25;
+    transform: rotate(15deg);
+}
+
+.lokasi-hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 700px;
+}
+
+.lokasi-hero-content span {
+    display: inline-block;
+
+    color: #e2c27c;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+
+    margin-bottom: 15px;
+}
+
+.lokasi-hero-content h1 {
+    font-size: 45px;
+    line-height: 1.2;
+
+    margin: 0 0 15px;
+}
+
+.lokasi-hero-content p {
+    max-width: 580px;
+
+    margin: auto;
+
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   BAGIAN LOKASI
+========================================= */
+
+.lokasi-section {
+    padding: 75px 6% 85px;
+
+    background:
+        linear-gradient(
+            rgba(247, 248, 243, 0.96),
+            rgba(247, 248, 243, 0.96)
+        );
+}
+
+
+/* KARTU UTAMA */
+
+.lokasi-card {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    display: block;
+
+    padding: 40px 45px;
+
+    background: #edf3e6;
+
+    border-radius: 30px;
+
+    border: 1px solid #dce7d5;
+
+    box-shadow:
+        0 15px 40px rgba(53, 92, 72, 0.12);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* HIASAN KARTU */
+
+.lokasi-card::after {
+    content: "🌿";
+
+    position: absolute;
+
+    right: 25px;
+    bottom: 20px;
+
+    font-size: 55px;
+
+    opacity: 0.16;
+}
+
+
+/* ICON */
+
+.lokasi-icon {
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dce9d3;
+
+    border-radius: 17px;
+
+    font-size: 27px;
+}
+
+
+/* INFORMASI */
+
+.lokasi-info h2 {
+    color: #355c48;
+
+    font-size: 30px;
+
+    margin: 0 0 12px;
+}
+
+.lokasi-info > p {
+    color: #647067;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    max-width: 700px;
+
+    margin: 0 0 25px;
+}
+
+
+/* DETAIL */
+
+.lokasi-detail {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 17px 0;
+
+    border-top: 1px solid #dce5d7;
+}
+
+.lokasi-detail span {
+    font-size: 22px;
+
+    width: 30px;
+
+    flex-shrink: 0;
+}
+
+.lokasi-detail strong {
+    display: block;
+
+    color: #4c6842;
+
+    font-size: 17px;
+
+    margin-bottom: 4px;
+}
+
+.lokasi-detail p {
+    margin: 0;
+
+    color: #727a73;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* KOORDINAT */
+
+.lokasi-koordinat {
+    margin-top: 8px;
+
+    padding: 18px 20px;
+
+    background: rgba(255,255,255,0.65);
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    border: 1px solid #dce6d8;
+}
+
+.lokasi-koordinat strong {
+    display: block;
+
+    color: #4d6543;
+
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+.lokasi-koordinat p {
+    margin: 0;
+
+    color: #5f685f;
+
+    font-size: 15px;
+}
+
+
+/* TOMBOL MAPS */
+
+.btn-lokasi {
+    display: block;
+
+    width: fit-content;
+
+    min-width: 230px;
+
+    margin: 25px auto 0;
+
+    padding: 14px 28px;
+
+    background: #dc9148;
+
+    color: white;
+
+    text-decoration: none;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 20px rgba(180, 112, 50, 0.20);
+
+    transition: 0.3s ease;
+}
+
+.btn-lokasi:hover {
+    background: #c87932;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(180, 112, 50, 0.25);
+}
+
+
+/* =========================================
+   GOOGLE MAPS
+========================================= */
+
+.lokasi-map {
+    max-width: 850px;
+
+    margin: 50px auto 0;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 12px 35px rgba(53, 92, 72, 0.13);
+
+    border: 6px solid white;
+
+    background: #e8eee5;
+}
+
+.lokasi-map iframe {
+    display: block;
+
+    width: 100%;
+
+    height: 430px;
+
+    border: 0;
+}
+
+
+/* =========================================
+   LOKASI - HP
+========================================= */
+
+@media (max-width: 768px) {
+
+    .lokasi-hero {
+        min-height: 360px;
+
+        margin-top: 105px;
+
+        padding: 65px 20px 60px;
+    }
+
+    .lokasi-hero-content h1 {
+        font-size: 34px;
+    }
+
+    .lokasi-hero-content p {
+        font-size: 15px;
+    }
+
+    .lokasi-hero::before {
+        left: -10px;
+        font-size: 50px;
+    }
+
+    .lokasi-hero::after {
+        right: -5px;
+        font-size: 55px;
+    }
+
+
+    .lokasi-section {
+        padding: 45px 6% 60px;
+    }
+
+
+    .lokasi-card {
+        padding: 28px 22px;
+
+        border-radius: 24px;
+    }
+
+
+    .lokasi-icon {
+        width: 52px;
+        height: 52px;
+
+        font-size: 23px;
+    }
+
+
+    .lokasi-info h2 {
+        font-size: 25px;
+    }
+
+
+    .lokasi-info > p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .lokasi-detail {
+        gap: 11px;
+        padding: 15px 0;
+    }
+
+
+    .lokasi-detail strong {
+        font-size: 16px;
+    }
+
+
+    .lokasi-detail p {
+        font-size: 13px;
+    }
+
+
+    .lokasi-koordinat {
+        padding: 16px 12px;
+    }
+
+
+    .lokasi-koordinat p {
+        font-size: 13px;
+    }
+
+
+    .btn-lokasi {
+        width: 100%;
+        min-width: 0;
+
+        padding: 13px 15px;
+
+        font-size: 15px;
+    }
+
+
+    .lokasi-map {
+        margin-top: 35px;
+
+        border-radius: 22px;
+
+        border-width: 4px;
+    }
+
+
+    .lokasi-map iframe {
+        height: 350px;
+    }
+}
