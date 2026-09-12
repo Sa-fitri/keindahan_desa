@@ -182,6 +182,111 @@
         </div>
 
     </section>
+    <!-- KRITIK & SARAN -->
+<section class="kritik-section">
+
+    <div class="kritik-container">
+
+        <div class="kritik-header">
+            <span>💬 KRITIK & SARAN</span>
+
+            <h2>
+                Sampaikan Pendapatmu
+            </h2>
+
+            <p>
+                Bantu kami mengembangkan website Desa Sepinggan Kecil
+                menjadi lebih baik.
+            </p>
+        </div>
+
+
+        <form id="kritikForm">
+
+            <div class="form-group">
+                <label for="nama">Nama</label>
+
+                <input
+                    type="text"
+                    id="nama"
+                    name="nama"
+                    placeholder="Masukkan nama kamu"
+                    required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="asal">Asal</label>
+
+                <input
+                    type="text"
+                    id="asal"
+                    name="asal"
+                    placeholder="Contoh: Desa Sepinggan Kecil"
+                    required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="kategori">Kategori</label>
+
+                <select id="kategori" name="kategori" required>
+
+                    <option value="">
+                        Pilih kategori
+                    </option>
+
+                    <option value="Tampilan Website">
+                        Tampilan Website
+                    </option>
+
+                    <option value="Informasi">
+                        Informasi
+                    </option>
+
+                    <option value="Fitur">
+                        Fitur
+                    </option>
+
+                    <option value="Konten">
+                        Konten
+                    </option>
+
+                    <option value="Saran Umum">
+                        Saran Umum
+                    </option>
+
+                    <option value="Lainnya">
+                        Lainnya
+                    </option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="saran">Kritik / Saran</label>
+
+                <textarea
+                    id="saran"
+                    name="saran"
+                    rows="5"
+                    placeholder="Tuliskan kritik atau saran kamu..."
+                    required></textarea>
+            </div>
+
+
+            <button type="submit" class="btn-kritik">
+                📩 Kirim Kritik & Saran
+            </button>
+
+            <p id="statusKritik"></p>
+
+        </form>
+
+    </div>
+
+</section>
 
 
     <!-- FOOTER -->
