@@ -3074,12 +3074,28 @@ RESPONSIVE HP
         padding: 14px;
     }
         }
+/* PERBAIKAN HALAMAN LOKASI DI HP */
 @media (max-width: 768px) {
 
+    /* Hero kembali satu kolom */
+    .lokasi-hero {
+        display: block !important;
+        width: 100% !important;
+        min-height: 320px !important;
+    }
+
+    .lokasi-hero-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 80px 20px !important;
+        text-align: center !important;
+    }
+
+    /* Bagian informasi + peta satu kolom */
     .lokasi-section {
         display: block !important;
         width: 100% !important;
-        padding: 65px 6% !important;
+        padding: 50px 6% !important;
     }
 
     .lokasi-card {
@@ -3095,7 +3111,7 @@ RESPONSIVE HP
     .lokasi-map iframe {
         width: 100% !important;
         height: 300px !important;
-        display: block;
+        display: block !important;
     }
 
 }
