@@ -297,8 +297,45 @@
         </p>
 
     </footer>
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbyLOn02MhHMB_BQEyyazog77Fo2GUM3lrh58qTKXgduYdpmyoyQLc6c6ewudoATn0Mh/exec";
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyLOn02MhHMB_BQEyyazog77Fo2GUM3lrh58qTKXgduYdpmyoyQLc6c6ewudoATn0Nh/exec";
+const form = document.getElementById("kritikForm");
+const status = document.getElementById("statusKritik");
+
+form.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    status.textContent = "Mengirim...";
+
+    const data = {
+        nama: document.getElementById("nama").value,
+        asal: document.getElementById("asal").value,
+        kategori: document.getElementById("kategori").value,
+        saran: document.getElementById("saran").value
+    };
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+
+        status.textContent = "✅ Kritik & saran berhasil dikirim!";
+        form.reset();
+
+    })
+    .catch(error => {
+
+        status.textContent = "❌ Gagal mengirim. Silakan coba lagi.";
+        console.error(error);
+
+    });
+
+});
+</script>
 
 </body>
 
