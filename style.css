@@ -3074,3 +3074,28 @@ RESPONSIVE HP
         padding: 14px;
     }
         }
+@media (max-width: 768px) {
+
+    .lokasi-section {
+        display: block !important;
+        width: 100% !important;
+        padding: 65px 6% !important;
+    }
+
+    .lokasi-card {
+        width: 100% !important;
+        margin: 0 auto 25px !important;
+    }
+
+    .lokasi-map {
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .lokasi-map iframe {
+        width: 100% !important;
+        height: 300px !important;
+        display: block;
+    }
+
+}
