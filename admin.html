@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Admin - Website Desa</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <div class="login-card">
+
+            <div class="login-icon">
+                🔐
+            </div>
+
+            <h1>Admin Desa</h1>
+
+            <p class="login-subtitle">
+                Silakan masuk untuk mengakses panel admin
+            </p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Masukkan username"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Masukkan password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="showPassword"
+                            aria-label="Tampilkan password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+                </div>
+
+                <button type="submit" class="login-button">
+                    Masuk
+                </button>
+
+                <p id="loginStatus" class="login-status"></p>
+
+            </form>
+
+            <a href="index.html" class="back-link">
+                ← Kembali ke Website Desa
+            </a>
+
+        </div>
+
+    </main>
+
+    <script>
+        // NANTI URL GOOGLE APPS SCRIPT DITEMPEL DI SINI
+        const SCRIPT_URL = "MASUKKAN_URL_GOOGLE_APPS_SCRIPT_DI_SINI";
+
+
+        // Tampilkan / sembunyikan password
+        const passwordInput = document.getElementById("password");
+        const showPassword = document.getElementById("showPassword");
+
+        showPassword.addEventListener("click", function () {
+
+            if (passwordInput.type === "password") {
+
+                passwordInput.type = "text";
+                showPassword.textContent = "🙈";
+
+            } else {
+
+                passwordInput.type = "password";
+                showPassword.textContent = "👁";
+
+            }
+
+        });
+
+
+        // Proses login
+        const loginForm = document.getElementById("loginForm");
+        const loginStatus = document.getElementById("loginStatus");
+
+        loginForm.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value;
+
+            loginStatus.textContent = "Memeriksa login...";
+            loginStatus.className = "login-status loading";
+
+            try {
+
+                const response = await fetch(SCRIPT_URL, {
+
+                    method: "POST",
+
+                    body: new URLSearchParams({
+                        action: "login",
+                        username: username,
+                        password: password
+                    })
+
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+
+                    loginStatus.textContent = "Login berhasil!";
+                    loginStatus.className = "login-status success";
+
+                    // Menyimpan status login sementara
+                    sessionStorage.setItem("adminLoggedIn", "true");
+
+                    // Pindah ke dashboard
+                    setTimeout(function () {
+                        window.location.href = "dashboard.html";
+                    }, 800);
+
+                } else {
+
+                    loginStatus.textContent =
+                        result.message || "Username atau password salah.";
+
+                    loginStatus.className = "login-status error";
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                loginStatus.textContent =
+                    "Terjadi kesalahan. Periksa koneksi atau URL Google Apps Script.";
+
+                loginStatus.className = "login-status error";
+
+            }
+
+        });
+    </script>
+
+</body>
+</html>
