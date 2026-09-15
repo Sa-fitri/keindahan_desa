@@ -109,59 +109,65 @@
         });
 
 
-        // Proses login
-        const loginForm = document.getElementById("loginForm");
-        const loginStatus = document.getElementById("loginStatus");
+        
+        <script>
+    // Tampilkan / sembunyikan password
+    const passwordInput = document.getElementById("password");
+    const showPassword = document.getElementById("showPassword");
 
-        loginForm.addEventListener("submit", async function (event) {
+    showPassword.addEventListener("click", function () {
 
-            event.preventDefault();
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            showPassword.textContent = "🙈";
+        } else {
+            passwordInput.type = "password";
+            showPassword.textContent = "👁";
+        }
 
-            const username = document.getElementById("username").value.trim();
-            const password = document.getElementById("password").value;
+    });
 
-            loginStatus.textContent = "Memeriksa login...";
-            loginStatus.className = "login-status loading";
 
-            try {
+    // Proses login admin
+    const loginForm = document.getElementById("loginForm");
+    const loginStatus = document.getElementById("loginStatus");
 
-                const response = await fetch(SCRIPT_URL, {
+    loginForm.addEventListener("submit", function (event) {
 
-                    method: "POST",
+        event.preventDefault();
 
-                    body: new URLSearchParams({
-                        action: "login",
-                        username: username,
-                        password: password
-                    })
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
 
-                });
+        // Username dan password admin
+        const ADMIN_USERNAME = "admin";
+        const ADMIN_PASSWORD = "admin123";
 
-                const result = await response.json();
+        if (
+            username === ADMIN_USERNAME &&
+            password === ADMIN_PASSWORD
+        ) {
 
-                if (result.success) {
+            loginStatus.textContent = "Login berhasil!";
+            loginStatus.className = "login-status success";
 
-                    loginStatus.textContent = "Login berhasil!";
-                    loginStatus.className = "login-status success";
+            sessionStorage.setItem("adminLoggedIn", "true");
 
-                    // Menyimpan status login sementara
-                    sessionStorage.setItem("adminLoggedIn", "true");
+            setTimeout(function () {
+                window.location.href = "dashboard.html";
+            }, 800);
 
-                    // Pindah ke dashboard
-                    setTimeout(function () {
-                        window.location.href = "dashboard.html";
-                    }, 800);
+        } else {
 
-                } else {
+            loginStatus.textContent =
+                "Username atau password salah.";
 
-                    loginStatus.textContent =
-                        result.message || "Username atau password salah.";
+            loginStatus.className = "login-status error";
 
-                    loginStatus.className = "login-status error";
+        }
 
-                }
-
-            } catch (error) {
+    });
+</script> {
 
                 console.error(error);
 
