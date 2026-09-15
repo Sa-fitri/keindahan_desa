@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login Admin - Website Desa</title>
-    
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="admin.css">
 </head>
@@ -29,7 +30,10 @@
             <form id="loginForm">
 
                 <div class="form-group">
-                    <label for="username">Username</label>
+
+                    <label for="username">
+                        Username
+                    </label>
 
                     <input
                         type="text"
@@ -39,10 +43,15 @@
                         autocomplete="username"
                         required
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label for="password">Password</label>
+
+                    <label for="password">
+                        Password
+                    </label>
 
                     <div class="password-box">
 
@@ -65,17 +74,30 @@
                         </button>
 
                     </div>
+
                 </div>
 
-                <button type="submit" class="login-button">
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
                     Masuk
                 </button>
 
-                <p id="loginStatus" class="login-status"></p>
+
+                <p
+                    id="loginStatus"
+                    class="login-status"
+                ></p>
 
             </form>
 
-            <a href="index.html" class="back-link">
+
+            <a
+                href="index.html"
+                class="back-link"
+            >
                 ← Kembali ke Website Desa
             </a>
 
@@ -83,103 +105,125 @@
 
     </main>
 
+
     <script>
-        // NANTI URL GOOGLE APPS SCRIPT DITEMPEL DI SINI
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLOn02MhHMB_BQEyyazog77Fo2GUM3lrh58qTKXgduYdpmyoyQLc6c6ewudoATn0Mh/exec";
+
+        // ==============================
+        // TAMPILKAN / SEMBUNYIKAN PASSWORD
+        // ==============================
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const showPassword =
+            document.getElementById("showPassword");
 
 
-        // Tampilkan / sembunyikan password
-        const passwordInput = document.getElementById("password");
-        const showPassword = document.getElementById("showPassword");
+        showPassword.addEventListener(
+            "click",
+            function () {
 
-        showPassword.addEventListener("click", function () {
+                if (passwordInput.type === "password") {
 
-            if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
 
-                passwordInput.type = "text";
-                showPassword.textContent = "🙈";
+                    showPassword.textContent = "🙈";
 
-            } else {
+                } else {
 
-                passwordInput.type = "password";
-                showPassword.textContent = "👁";
+                    passwordInput.type = "password";
 
-            }
+                    showPassword.textContent = "👁";
 
-        });
-
-
-        
-        <script>
-    // Tampilkan / sembunyikan password
-    const passwordInput = document.getElementById("password");
-    const showPassword = document.getElementById("showPassword");
-
-    showPassword.addEventListener("click", function () {
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            showPassword.textContent = "🙈";
-        } else {
-            passwordInput.type = "password";
-            showPassword.textContent = "👁";
-        }
-
-    });
-
-
-    // Proses login admin
-    const loginForm = document.getElementById("loginForm");
-    const loginStatus = document.getElementById("loginStatus");
-
-    loginForm.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value;
-
-        // Username dan password admin
-        const ADMIN_USERNAME = "admin";
-        const ADMIN_PASSWORD = "admin123";
-
-        if (
-            username === ADMIN_USERNAME &&
-            password === ADMIN_PASSWORD
-        ) {
-
-            loginStatus.textContent = "Login berhasil!";
-            loginStatus.className = "login-status success";
-
-            sessionStorage.setItem("adminLoggedIn", "true");
-
-            setTimeout(function () {
-                window.location.href = "dashboard.html";
-            }, 800);
-
-        } else {
-
-            loginStatus.textContent =
-                "Username atau password salah.";
-
-            loginStatus.className = "login-status error";
-
-        }
-
-    });
-</script> {
-
-                console.error(error);
-
-                loginStatus.textContent =
-                    "Terjadi kesalahan. Periksa koneksi atau URL Google Apps Script.";
-
-                loginStatus.className = "login-status error";
+                }
 
             }
+        );
 
-        });
+
+        // ==============================
+        // LOGIN ADMIN
+        // ==============================
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const loginStatus =
+            document.getElementById("loginStatus");
+
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    document
+                    .getElementById("username")
+                    .value
+                    .trim();
+
+
+                const password =
+                    document
+                    .getElementById("password")
+                    .value;
+
+
+                // LOGIN ADMIN
+                const ADMIN_USERNAME = "admin";
+
+                const ADMIN_PASSWORD = "admin123";
+
+
+                if (
+                    username === ADMIN_USERNAME &&
+                    password === ADMIN_PASSWORD
+                ) {
+
+                    loginStatus.textContent =
+                        "Login berhasil!";
+
+                    loginStatus.className =
+                        "login-status success";
+
+
+                    // Simpan status login
+                    sessionStorage.setItem(
+                        "adminLoggedIn",
+                        "true"
+                    );
+
+
+                    // Masuk dashboard
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        },
+                        800
+                    );
+
+
+                } else {
+
+                    loginStatus.textContent =
+                        "Username atau password salah.";
+
+                    loginStatus.className =
+                        "login-status error";
+
+                }
+
+            }
+        );
+
     </script>
 
 </body>
+
 </html>
