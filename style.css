@@ -3017,63 +3017,202 @@ RESPONSIVE HP
 
 
 /* =========================================
-   KRITIK & SARAN - HP
+   KRITIK & SARAN - RESPONSIVE
+========================================= */
+
+.kritik-section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.kritik-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#kritikForm {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#kritikForm *,
+#kritikForm *::before,
+#kritikForm *::after {
+    box-sizing: border-box;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   HP
 ========================================= */
 
 @media (max-width: 768px) {
 
     .kritik-section {
-        padding: 65px 6%;
+        padding: 60px 15px !important;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .kritik-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
     }
 
     .kritik-header {
-        margin-bottom: 30px;
+        width: 100%;
+        margin-bottom: 28px;
+        text-align: center;
     }
 
     .kritik-header span {
-        font-size: 12px;
-        padding: 8px 16px;
+        font-size: 11px;
+        padding: 7px 14px;
+        margin-bottom: 12px;
     }
 
     .kritik-header h2 {
-        font-size: 30px;
-        line-height: 1.2;
+        font-size: 28px;
+        line-height: 1.25;
+        margin-bottom: 12px;
     }
 
     .kritik-header p {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 1.6;
+        max-width: 100%;
     }
+
+
+    /* FORM */
 
     #kritikForm {
-        padding: 25px 20px;
-
-        border-radius: 22px;
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 18px !important;
+        margin: 0 auto;
+        border-radius: 20px;
     }
 
+
+    /* INPUT */
+
     .form-group {
-        margin-bottom: 20px;
+        width: 100%;
+        margin-bottom: 18px;
     }
 
     .form-group label {
-        font-size: 15px;
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        margin-bottom: 7px;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        padding: 12px 13px;
+
         font-size: 14px;
-        padding: 13px 14px;
+
+        border-radius: 11px;
+
+        box-sizing: border-box;
     }
 
     .form-group textarea {
-        min-height: 130px;
+        min-height: 125px;
+        line-height: 1.5;
+    }
+
+
+    /* TOMBOL */
+
+    .btn-kritik {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+
+        padding: 13px 15px;
+
+        font-size: 14px;
+
+        border-radius: 25px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* STATUS */
+
+    #statusKritik {
+        width: 100%;
+        box-sizing: border-box;
+
+        font-size: 13px;
+        line-height: 1.5;
+
+        margin-top: 15px;
+    }
+}
+
+
+/* =========================================
+   HP KECIL
+========================================= */
+
+@media (max-width: 380px) {
+
+    .kritik-section {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    #kritikForm {
+        padding: 22px 15px !important;
+        border-radius: 18px;
+    }
+
+    .kritik-header h2 {
+        font-size: 25px;
+    }
+
+    .kritik-header p {
+        font-size: 12px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 13px;
+        padding: 11px 12px;
     }
 
     .btn-kritik {
-        font-size: 15px;
-        padding: 14px;
+        font-size: 13px;
     }
-        }
+}
 /* ===== FIX LOKASI UNTUK HP ===== */
 
 @media (max-width: 768px) {
