@@ -3269,3 +3269,212 @@ RESPONSIVE HP
     }
 
 }
+/* =========================================
+   FIX KRITIK & SARAN - FINAL
+========================================= */
+
+.kritik-section {
+    width: 100%;
+    padding: 90px 6%;
+    background:
+        linear-gradient(
+            rgba(247, 248, 243, 0.94),
+            rgba(247, 248, 243, 0.94)
+        ),
+        url("background-sawah.jpg") center/cover no-repeat;
+}
+
+.kritik-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.kritik-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.kritik-header span {
+    display: inline-block;
+    padding: 9px 20px;
+    background: #e4f0e2;
+    color: #355c48;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.kritik-header h2 {
+    color: #355c48;
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.kritik-header p {
+    color: #6f7d75;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#kritikForm {
+    width: 100%;
+    background: rgba(255,255,255,0.96);
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow: 0 12px 35px rgba(53,92,72,0.12);
+    border: 1px solid #e2e9e1;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    color: #355c48;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ccd8d0;
+    border-radius: 13px;
+    background: #ffffff;
+    color: #40574b;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #6c8c57;
+    box-shadow: 0 0 0 3px rgba(108,140,87,0.12);
+}
+
+.btn-kritik {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 15px 20px;
+    background: #356859;
+    color: white;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(53,104,89,0.20);
+}
+
+#statusKritik {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+    color: #52705f;
+}
+
+
+/* =========================================
+   KRITIK & SARAN - HP
+========================================= */
+
+@media (max-width: 768px) {
+
+    .kritik-section {
+        padding: 60px 15px !important;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .kritik-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .kritik-header {
+        width: 100%;
+        margin-bottom: 28px;
+        text-align: center;
+    }
+
+    .kritik-header span {
+        font-size: 11px;
+        padding: 7px 14px;
+        margin-bottom: 12px;
+    }
+
+    .kritik-header h2 {
+        font-size: 28px;
+        line-height: 1.25;
+        margin-bottom: 12px;
+    }
+
+    .kritik-header p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    #kritikForm {
+        width: 100%;
+        padding: 25px 18px !important;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 12px 13px;
+        font-size: 14px;
+        border-radius: 11px;
+        box-sizing: border-box;
+    }
+
+    .form-group textarea {
+        min-height: 125px;
+    }
+
+    .btn-kritik {
+        width: 100%;
+        padding: 13px 15px;
+        font-size: 14px;
+    }
+
+    #statusKritik {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
