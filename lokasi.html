@@ -511,7 +511,8 @@ form.addEventListener("submit", function(e) {
     status.textContent = "Mengirim...";
 
     const data = new URLSearchParams();
-
+    
+    data.append("action", "kritik");
     data.append("nama", document.getElementById("nama").value);
     data.append("asal", document.getElementById("asal").value);
     data.append("kategori", document.getElementById("kategori").value);
