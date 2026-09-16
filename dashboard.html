@@ -138,24 +138,279 @@
 
     <script>
 
-        // Cek apakah admin sudah login
-        if (sessionStorage.getItem("adminLoggedIn") !== "true") {
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw03pqlgLR-kJ0K2j-kciwQhJn6vDgWad0voFVHW7yNX9Fiwwah1rcnFhH3oQ2qlvfcyg/exec";
 
-            window.location.href = "admin.html";
+
+// ==========================================
+// CEK LOGIN
+// ==========================================
+
+if (sessionStorage.getItem("adminLoggedIn") !== "true") {
+
+    window.location.href = "admin.html";
+
+}
+
+
+// ==========================================
+// AMBIL DATA KRITIK & SARAN
+// ==========================================
+
+async function loadData() {
+
+    const container =
+        document.getElementById("dataKritik");
+
+    try {
+
+        container.innerHTML =
+            "<p>Memuat data...</p>";
+
+
+        const response = await fetch(
+            SCRIPT_URL,
+            {
+                method: "POST",
+
+                body: new URLSearchParams({
+                    action: "getDataAdmin"
+                })
+            }
+        );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            container.innerHTML =
+                "<p>Gagal mengambil data.</p>";
+
+            return;
+        }
+
+
+        const data = result.data || [];
+
+
+        // ==================================
+        // JIKA BELUM ADA DATA
+        // ==================================
+
+        if (data.length === 0) {
+
+            container.innerHTML =
+                "<p>Belum ada Kritik & Saran.</p>";
+
+            return;
+        }
+
+
+        // ==================================
+        // TAMPILKAN DATA
+        // ==================================
+
+        container.innerHTML = "";
+
+
+        data.forEach(function(item) {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "kritik-card";
+
+
+            card.innerHTML = `
+
+                <div class="kritik-card-header">
+
+                    <strong>${item.kode}</strong>
+
+                    <span>
+                        ${item.status}
+                    </span>
+
+                </div>
+
+
+                <p>
+                    <b>Nama:</b>
+                    ${item.nama}
+                </p>
+
+
+                <p>
+                    <b>Asal:</b>
+                    ${item.asal}
+                </p>
+
+
+                <p>
+                    <b>Kategori:</b>
+                    ${item.kategori}
+                </p>
+
+
+                <p>
+                    <b>Kritik / Saran:</b><br>
+                    ${item.saran}
+                </p>
+
+
+                <p>
+                    <b>Tanggal:</b>
+                    ${item.tanggal}
+                </p>
+
+
+                <hr>
+
+
+                <label>
+                    Tanggapan Admin
+                </label>
+
+
+                <textarea
+                    id="tanggapan-${item.kode}"
+                    placeholder="Tulis tanggapan..."
+                >${item.tanggapan || ""}</textarea>
+
+
+                <button
+                    onclick="simpanTanggapan('${item.kode}')"
+                >
+                    💬 Simpan Tanggapan
+                </button>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        container.innerHTML =
+            "<p>Terjadi kesalahan saat mengambil data.</p>";
+
+    }
+
+}
+
+
+// ==========================================
+// SIMPAN TANGGAPAN
+// ==========================================
+
+async function simpanTanggapan(kode) {
+
+    const textarea =
+        document.getElementById(
+            "tanggapan-" + kode
+        );
+
+
+    const tanggapan =
+        textarea.value.trim();
+
+
+    if (!tanggapan) {
+
+        alert("Tanggapan belum diisi.");
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                SCRIPT_URL,
+                {
+
+                    method: "POST",
+
+                    body: new URLSearchParams({
+
+                        action: "tanggapi",
+
+                        kode: kode,
+
+                        tanggapan: tanggapan
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (result.success) {
+
+            alert(
+                "Tanggapan berhasil disimpan!"
+            );
+
+            loadData();
+
+        } else {
+
+            alert(
+                result.message ||
+                "Gagal menyimpan tanggapan."
+            );
 
         }
 
 
-        // Tombol logout
-        function logout() {
+    } catch (error) {
 
-            sessionStorage.removeItem("adminLoggedIn");
+        console.error(error);
 
-            window.location.href = "admin.html";
+        alert(
+            "Terjadi kesalahan saat menyimpan."
+        );
 
-        }
+    }
 
-    </script>
+}
+
+
+// ==========================================
+// LOGOUT
+// ==========================================
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "adminLoggedIn"
+    );
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+// ==========================================
+// JALANKAN SAAT DASHBOARD DIBUKA
+// ==========================================
+
+loadData();
+
+</script>
 
 </body>
 </html>
