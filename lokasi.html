@@ -499,7 +499,7 @@
 
     </footer>
 <script>
-const scriptURL = https://script.google.com/macros/s/AKfycbw03pqlgLR-kJ0K2j-kciwQhJn6vDgWad0voFVHW7yNX9Fiwwah1rcnFhH3oQ2qlvfcyg/exec
+const scriptURL = "https://script.google.com/macros/s/AKfycbw03pqlgLR-kJ0K2j-kciwQhJn6vDgWad0voFVHW7yNX9Fiwwah1rcnFhH3oQ2qlvfcyg/exec";
 
 const form = document.getElementById("kritikForm");
 const status = document.getElementById("statusKritik");
@@ -521,22 +521,30 @@ form.addEventListener("submit", function(e) {
     const hiddenAction = document.createElement("input");
     hiddenAction.type = "hidden";
     hiddenAction.name = "action";
-    hiddenAction.value = "kritik";
+    hiddenAction.value = "submitKritik";
+
     form.appendChild(hiddenAction);
 
     form.submit();
 
     setTimeout(function() {
         status.textContent = "✅ Kritik & saran berhasil dikirim!";
+
         form.reset();
+
         hiddenAction.remove();
+
         form.target = "";
+
         form.action = "";
+
         form.method = "GET";
+
         iframe.remove();
+
     }, 1500);
 });
-                      </script>
+</script>
 
 
 </body>
