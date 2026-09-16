@@ -505,39 +505,38 @@ const form = document.getElementById("kritikForm");
 const status = document.getElementById("statusKritik");
 
 form.addEventListener("submit", function(e) {
-
     e.preventDefault();
 
     status.textContent = "Mengirim...";
 
-    const data = new URLSearchParams();
-    
-    data.append("action", "kritik");
-    data.append("nama", document.getElementById("nama").value);
-    data.append("asal", document.getElementById("asal").value);
-    data.append("kategori", document.getElementById("kategori").value);
-    data.append("saran", document.getElementById("saran").value);
+    const iframe = document.createElement("iframe");
+    iframe.name = "kritikFrame";
+    iframe.style.display = "none";
+    document.body.appendChild(iframe);
 
-    fetch(scriptURL, {
-        method: "POST",
-        mode: "no-cors",
-        body: data
-    })
-    .then(() => {
+    form.target = "kritikFrame";
+    form.action = scriptURL;
+    form.method = "POST";
 
+    const hiddenAction = document.createElement("input");
+    hiddenAction.type = "hidden";
+    hiddenAction.name = "action";
+    hiddenAction.value = "kritik";
+    form.appendChild(hiddenAction);
+
+    form.submit();
+
+    setTimeout(function() {
         status.textContent = "✅ Kritik & saran berhasil dikirim!";
         form.reset();
-
-    })
-    .catch(error => {
-
-        status.textContent = "❌ Gagal mengirim. Silakan coba lagi.";
-        console.error(error);
-
-    });
-
+        hiddenAction.remove();
+        form.target = "";
+        form.action = "";
+        form.method = "GET";
+        iframe.remove();
+    }, 1500);
 });
-</script>
+                      </script>
 
 
 </body>
