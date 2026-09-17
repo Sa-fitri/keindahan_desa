@@ -156,7 +156,8 @@
 
     <script>
 
-        const SCRIPT_URL ="https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
+        const SCRIPT_URL =
+            "https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
 
 
         // ==========================================
@@ -303,7 +304,6 @@
                 );
 
 
-            // DATA KOSONG
             if (
                 !data ||
                 data.length === 0
@@ -349,8 +349,6 @@
             }
 
 
-            // LANGSUNG PAKAI DATA
-            // Tidak menggunakan slice(1)
             const rows = data;
 
 
@@ -545,14 +543,14 @@
                                         `
 
                                         <textarea
-                                            id="tanggapan-${item.baris}"
+                                            id="tanggapan-${item.kode}"
                                             placeholder="Tulis tanggapan untuk pengunjung..."
                                         ></textarea>
 
 
                                         <button
                                             class="btn-tanggapan"
-                                            onclick="kirimTanggapan(${item.baris})"
+                                            onclick="kirimTanggapan('${item.kode}')"
                                         >
                                             💬 Simpan Tanggapan
                                         </button>
@@ -592,11 +590,11 @@
         // KIRIM TANGGAPAN
         // ==========================================
 
-        function kirimTanggapan(baris) {
+        function kirimTanggapan(kode) {
 
             const textarea =
                 document.getElementById(
-                    "tanggapan-" + baris
+                    "tanggapan-" + kode
                 );
 
 
@@ -679,9 +677,9 @@
             script.src =
                 SCRIPT_URL +
                 "?action=tanggapan" +
-                "&baris=" +
+                "&kode=" +
                 encodeURIComponent(
-                    baris
+                    kode
                 ) +
                 "&tanggapan=" +
                 encodeURIComponent(
