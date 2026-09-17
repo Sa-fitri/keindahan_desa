@@ -7,39 +7,11 @@
     <title>Dashboard Admin - Kritik & Saran</title>
 
     <link rel="stylesheet" href="dashboard.css">
-
-    <style>
-        /* TOMBOL HAPUS */
-        .btn-hapus {
-            width: 100%;
-            margin-top: 12px;
-            padding: 11px 16px;
-
-            border: none;
-            border-radius: 12px;
-
-            background: #f3e1df;
-            color: #9b3f36;
-
-            font-size: 14px;
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .btn-hapus:hover {
-            background: #eaccca;
-        }
-    </style>
 </head>
 
 <body>
 
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
+    <!-- NAVBAR -->
     <nav class="admin-navbar">
 
         <div class="admin-logo">
@@ -52,10 +24,7 @@
                 👤 Admin
             </span>
 
-            <button
-                class="logout-button"
-                onclick="logout()"
-            >
+            <button class="logout-button" onclick="logout()">
                 🚪 Logout
             </button>
 
@@ -64,18 +33,9 @@
     </nav>
 
 
-
-    <!-- =========================
-         DASHBOARD
-    ========================== -->
-
     <main class="dashboard">
 
-
-        <!-- =========================
-             WELCOME
-        ========================== -->
-
+        <!-- WELCOME -->
         <section class="welcome">
 
             <div class="welcome-label">
@@ -94,15 +54,8 @@
         </section>
 
 
-
-        <!-- =========================
-             STATISTIK
-        ========================== -->
-
+        <!-- STATISTIK -->
         <section class="stats">
-
-
-            <!-- TOTAL -->
 
             <div class="stat-card">
 
@@ -111,22 +64,12 @@
                 </div>
 
                 <div>
-
-                    <p>
-                        Total Kritik & Saran
-                    </p>
-
-                    <h2 id="totalData">
-                        0
-                    </h2>
-
+                    <p>Total Kritik & Saran</p>
+                    <h2 id="totalData">0</h2>
                 </div>
 
             </div>
 
-
-
-            <!-- BELUM -->
 
             <div class="stat-card">
 
@@ -135,22 +78,12 @@
                 </div>
 
                 <div>
-
-                    <p>
-                        Belum Ditanggapi
-                    </p>
-
-                    <h2 id="belumData">
-                        0
-                    </h2>
-
+                    <p>Belum Ditanggapi</p>
+                    <h2 id="belumData">0</h2>
                 </div>
 
             </div>
 
-
-
-            <!-- SUDAH -->
 
             <div class="stat-card">
 
@@ -159,15 +92,8 @@
                 </div>
 
                 <div>
-
-                    <p>
-                        Sudah Ditanggapi
-                    </p>
-
-                    <h2 id="sudahData">
-                        0
-                    </h2>
-
+                    <p>Sudah Ditanggapi</p>
+                    <h2 id="sudahData">0</h2>
                 </div>
 
             </div>
@@ -175,13 +101,8 @@
         </section>
 
 
-
-        <!-- =========================
-             DATA PENGUNJUNG
-        ========================== -->
-
+        <!-- DATA -->
         <section class="data-section">
-
 
             <div class="section-title">
 
@@ -189,132 +110,109 @@
                     DATA PENGUNJUNG
                 </span>
 
-                <h2>
-                    Kritik & Saran
-                </h2>
+                <div class="title-row">
+
+                    <h2>
+                        Kritik & Saran
+                    </h2>
+
+                    <button
+                        class="refresh-button"
+                        onclick="loadKritik()"
+                    >
+                        🔄 Refresh
+                    </button>
+
+                </div>
 
             </div>
 
 
-            <!-- LOADING -->
-
-            <div
-                id="loading"
-                class="loading"
-            >
+            <div id="loading" class="loading">
                 🔄 Memuat data...
             </div>
 
-
-            <!-- DATA -->
 
             <div
                 id="dataKritik"
                 class="data-kritik"
             ></div>
 
-
         </section>
 
     </main>
 
-
-
-    <!-- FOOTER -->
 
     <footer>
         © 2026 Desa Sepinggan Kecil
     </footer>
 
 
-
     <script>
-
-
-        // ==============================
-        // URL GOOGLE APPS SCRIPT
-        // ==============================
 
         const SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
 
 
-
-        // ==============================
         // CEK LOGIN
-        // ==============================
-
         if (
-            sessionStorage.getItem("adminLoggedIn")
-            !== "true"
+            sessionStorage.getItem("adminLoggedIn") !== "true"
         ) {
-
-            window.location.href =
-                "admin.html";
-
+            window.location.href = "admin.html";
         }
 
 
-
-        // ==============================
         // LOAD DATA
-        // ==============================
-
         function loadKritik() {
 
-            document.getElementById("loading")
-                .style.display = "block";
+            document.getElementById("loading").style.display =
+                "block";
+
+            document.getElementById("dataKritik").innerHTML =
+                "";
 
 
             const callbackName =
                 "callbackDashboard" + Date.now();
 
 
-            window[callbackName] =
-                function(response) {
+            window[callbackName] = function(response) {
+
+                document.getElementById("loading").style.display =
+                    "none";
 
 
-                    document.getElementById("loading")
-                        .style.display = "none";
+                if (!response.success) {
 
+                    document.getElementById("dataKritik").innerHTML = `
+                        <div class="error-data">
 
-                    if (!response.success) {
-
-                        document.getElementById(
-                            "dataKritik"
-                        ).innerHTML = `
-
-                            <div class="empty-data">
-
-                                <div class="empty-icon">
-                                    ⚠️
-                                </div>
-
-                                <h3>
-                                    Gagal memuat data
-                                </h3>
-
-                                <p>
-                                    Periksa koneksi dan URL
-                                    Google Apps Script.
-                                </p>
-
+                            <div class="error-icon">
+                                ⚠️
                             </div>
 
-                        `;
+                            <h3>
+                                Gagal memuat data
+                            </h3>
 
-                        delete window[callbackName];
+                            <p>
+                                Periksa koneksi dan URL Google Apps Script.
+                            </p>
 
-                        return;
-                    }
-
-
-                    tampilkanData(response.data);
-
+                        </div>
+                    `;
 
                     delete window[callbackName];
 
-                };
+                    return;
+                }
+
+
+                tampilkanData(response.data);
+
+                delete window[callbackName];
+
+            };
 
 
             const script =
@@ -332,46 +230,21 @@
         }
 
 
-
-        // ==============================
         // TAMPILKAN DATA
-        // ==============================
-
         function tampilkanData(data) {
 
-
             const container =
-                document.getElementById(
-                    "dataKritik"
-                );
+                document.getElementById("dataKritik");
 
 
-            // ==============================
-            // DATA KOSONG
-            // ==============================
+            if (!data || data.length <= 1) {
 
-            if (
-                !data ||
-                data.length <= 1
-            ) {
-
-                document.getElementById(
-                    "totalData"
-                ).textContent = "0";
-
-
-                document.getElementById(
-                    "belumData"
-                ).textContent = "0";
-
-
-                document.getElementById(
-                    "sudahData"
-                ).textContent = "0";
+                document.getElementById("totalData").textContent = "0";
+                document.getElementById("belumData").textContent = "0";
+                document.getElementById("sudahData").textContent = "0";
 
 
                 container.innerHTML = `
-
                     <div class="empty-data">
 
                         <div class="empty-icon">
@@ -383,116 +256,78 @@
                         </h3>
 
                         <p>
-                            Data dari pengunjung
-                            akan muncul di sini.
+                            Data dari pengunjung akan muncul di sini.
                         </p>
 
                     </div>
-
                 `;
 
                 return;
             }
 
 
-
-            // ==============================
-            // LEWATI HEADER
-            // ==============================
-
-            const rows =
-                data.slice(1);
+            const rows = data.slice(1);
 
 
-
-            // ==============================
-            // HITUNG STATISTIK
-            // ==============================
-
-            const total =
-                rows.length;
+            const total = rows.length;
 
 
             const sudah =
                 rows.filter(
-                    item =>
-                    item.status ===
-                    "Sudah Ditanggapi"
+                    item => item.status === "Sudah Ditanggapi"
                 ).length;
 
 
-            const belum =
-                total - sudah;
+            const belum = total - sudah;
 
 
+            document.getElementById("totalData").textContent =
+                total;
 
-            document.getElementById(
-                "totalData"
-            ).textContent = total;
+            document.getElementById("belumData").textContent =
+                belum;
 
-
-            document.getElementById(
-                "belumData"
-            ).textContent = belum;
-
-
-            document.getElementById(
-                "sudahData"
-            ).textContent = sudah;
+            document.getElementById("sudahData").textContent =
+                sudah;
 
 
+            container.innerHTML = rows.map(item => {
 
-            // ==============================
-            // TAMPILKAN CARD
-            // ==============================
-
-            container.innerHTML =
-                rows.map(item => {
+                const sudahDitanggapi =
+                    item.status === "Sudah Ditanggapi";
 
 
-                    const sudahDitanggapi =
-                        item.status ===
-                        "Sudah Ditanggapi";
+                return `
 
+                    <div class="kritik-card">
 
-                    return `
+                        <div class="kritik-content">
 
-                        <div class="kritik-card">
-
-
-                            <!-- BAGIAN ATAS -->
-
+                            <!-- HEADER CARD -->
                             <div class="kritik-header">
 
                                 <div>
 
                                     <h3>
-                                        👤
-                                        ${escapeHTML(
-                                            item.nama
-                                        )}
+                                        👤 ${escapeHTML(item.nama)}
                                     </h3>
 
                                     <span>
                                         Kode:
-                                        ${escapeHTML(
-                                            item.kode
-                                        )}
+                                        ${escapeHTML(item.kode)}
                                     </span>
 
                                 </div>
 
 
-                                <span
-                                    class="
+                                <span class="
                                     status-badge
                                     ${
                                         sudahDitanggapi
                                         ? "status-sudah"
                                         : "status-belum"
                                     }
-                                    "
-                                >
+                                ">
 
                                     ${
                                         sudahDitanggapi
@@ -505,57 +340,28 @@
                             </div>
 
 
-
                             <!-- INFORMASI -->
-
                             <div class="kritik-info">
 
-
                                 <p>
-
-                                    <strong>
-                                        📍 Asal:
-                                    </strong>
-
-                                    ${escapeHTML(
-                                        item.asal
-                                    )}
-
+                                    <strong>📍 Asal:</strong>
+                                    ${escapeHTML(item.asal)}
                                 </p>
 
-
                                 <p>
-
-                                    <strong>
-                                        🏷️ Kategori:
-                                    </strong>
-
-                                    ${escapeHTML(
-                                        item.kategori
-                                    )}
-
+                                    <strong>🏷️ Kategori:</strong>
+                                    ${escapeHTML(item.kategori)}
                                 </p>
 
-
                                 <p>
-
-                                    <strong>
-                                        📅 Tanggal:
-                                    </strong>
-
-                                    ${escapeHTML(
-                                        item.tanggal
-                                    )}
-
+                                    <strong>📅 Tanggal:</strong>
+                                    ${escapeHTML(item.tanggal)}
                                 </p>
-
 
                             </div>
 
 
-
-                            <!-- KRITIK / SARAN -->
-
+                            <!-- SARAN -->
                             <div class="saran-box">
 
                                 <strong>
@@ -563,19 +369,13 @@
                                 </strong>
 
                                 <p>
-                                    ${
-                                        escapeHTML(
-                                            item.saran
-                                        ) || "-"
-                                    }
+                                    ${escapeHTML(item.saran) || "-"}
                                 </p>
 
                             </div>
 
 
-
                             <!-- TANGGAPAN -->
-
                             <div class="tanggapan-box">
 
                                 <strong>
@@ -591,11 +391,7 @@
                                     `
 
                                     <div class="tanggapan-sudah">
-
-                                        ${escapeHTML(
-                                            item.tanggapan
-                                        )}
-
+                                        ${escapeHTML(item.tanggapan)}
                                     </div>
 
                                     `
@@ -614,47 +410,40 @@
                                         class="btn-tanggapan"
                                         onclick="kirimTanggapan(${item.baris})"
                                     >
-
                                         💬 Simpan Tanggapan
-
                                     </button>
 
                                     `
                                 }
 
-
                             </div>
 
+                        </div>
 
 
-                            <!-- TOMBOL HAPUS -->
+                        <!-- HAPUS DI SAMPING -->
+                        <div class="hapus-area">
 
                             <button
                                 class="btn-hapus"
                                 onclick="hapusKritik(${item.baris})"
                             >
-
                                 🗑️ Hapus Data
-
                             </button>
-
 
                         </div>
 
-                    `;
+                    </div>
 
-                }).join("");
+                `;
+
+            }).join("");
 
         }
 
 
-
-        // ==============================
         // KIRIM TANGGAPAN
-        // ==============================
-
         function kirimTanggapan(baris) {
-
 
             const textarea =
                 document.getElementById(
@@ -662,9 +451,7 @@
                 );
 
 
-            if (!textarea) {
-                return;
-            }
+            if (!textarea) return;
 
 
             const tanggapan =
@@ -678,40 +465,36 @@
                 );
 
                 return;
-
             }
 
 
             const callbackName =
-                "callbackTanggapan" +
-                Date.now();
+                "callbackTanggapan" + Date.now();
 
 
-            window[callbackName] =
-                function(response) {
+            window[callbackName] = function(response) {
+
+                if (response.success) {
+
+                    alert(
+                        "✅ Tanggapan berhasil disimpan."
+                    );
+
+                    loadKritik();
+
+                } else {
+
+                    alert(
+                        "❌ Gagal menyimpan tanggapan: " +
+                        (response.message || "")
+                    );
+
+                }
 
 
-                    if (response.success) {
+                delete window[callbackName];
 
-                        alert(
-                            "✅ Tanggapan berhasil disimpan."
-                        );
-
-                        loadKritik();
-
-                    } else {
-
-                        alert(
-                            "❌ Gagal menyimpan tanggapan: " +
-                            (response.message || "")
-                        );
-
-                    }
-
-
-                    delete window[callbackName];
-
-                };
+            };
 
 
             const script =
@@ -726,9 +509,7 @@
                 "&tanggapan=" +
                 encodeURIComponent(tanggapan) +
                 "&callback=" +
-                encodeURIComponent(
-                    callbackName
-                );
+                encodeURIComponent(callbackName);
 
 
             document.body.appendChild(script);
@@ -736,13 +517,8 @@
         }
 
 
-
-        // ==============================
         // HAPUS DATA
-        // ==============================
-
         function hapusKritik(baris) {
-
 
             const yakin =
                 confirm(
@@ -750,41 +526,36 @@
                 );
 
 
-            if (!yakin) {
-                return;
-            }
+            if (!yakin) return;
 
 
             const callbackName =
-                "callbackHapus" +
-                Date.now();
+                "callbackHapus" + Date.now();
 
 
-            window[callbackName] =
-                function(response) {
+            window[callbackName] = function(response) {
+
+                if (response.success) {
+
+                    alert(
+                        "🗑️ Data berhasil dihapus."
+                    );
+
+                    loadKritik();
+
+                } else {
+
+                    alert(
+                        "❌ Gagal menghapus data: " +
+                        (response.message || "")
+                    );
+
+                }
 
 
-                    if (response.success) {
+                delete window[callbackName];
 
-                        alert(
-                            "🗑️ Data berhasil dihapus."
-                        );
-
-                        loadKritik();
-
-                    } else {
-
-                        alert(
-                            "❌ Gagal menghapus data: " +
-                            (response.message || "")
-                        );
-
-                    }
-
-
-                    delete window[callbackName];
-
-                };
+            };
 
 
             const script =
@@ -797,9 +568,7 @@
                 "&baris=" +
                 encodeURIComponent(baris) +
                 "&callback=" +
-                encodeURIComponent(
-                    callbackName
-                );
+                encodeURIComponent(callbackName);
 
 
             document.body.appendChild(script);
@@ -807,66 +576,33 @@
         }
 
 
-
-        // ==============================
         // ESCAPE HTML
-        // ==============================
-
         function escapeHTML(text) {
-
 
             if (
                 text === null ||
                 text === undefined
             ) {
-
                 return "";
-
             }
 
 
             return String(text)
-
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
 
         }
 
 
-
-        // ==============================
         // LOGOUT
-        // ==============================
-
         function logout() {
-
 
             sessionStorage.removeItem(
                 "adminLoggedIn"
             );
-
 
             window.location.href =
                 "admin.html";
@@ -874,11 +610,7 @@
         }
 
 
-
-        // ==============================
         // JALANKAN
-        // ==============================
-
         loadKritik();
 
     </script>
