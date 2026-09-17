@@ -400,14 +400,14 @@
 
                                     `
 
-                                    <textarea
-    id="tanggapan-${item.kode}"
+                                  <textarea
+    id="tanggapan-${item.baris}"
     placeholder="Tulis tanggapan untuk pengunjung..."
 ></textarea>
 
 <button
     class="btn-tanggapan"
-    onclick="kirimTanggapan('${item.kode}')"
+    onclick="kirimTanggapan(${item.baris})"
 >
     💬 Simpan Tanggapan
 </button>
