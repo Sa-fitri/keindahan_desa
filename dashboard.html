@@ -401,17 +401,16 @@
                                     `
 
                                     <textarea
-                                        id="tanggapan-${item.baris}"
-                                        placeholder="Tulis tanggapan untuk pengunjung..."
-                                    ></textarea>
+    id="tanggapan-${item.kode}"
+    placeholder="Tulis tanggapan untuk pengunjung..."
+></textarea>
 
-
-                                    <button
-                                        class="btn-tanggapan"
-                                        onclick="kirimTanggapan(${item.baris})"
-                                    >
-                                        💬 Simpan Tanggapan
-                                    </button>
+<button
+    class="btn-tanggapan"
+    onclick="kirimTanggapan('${item.kode}')"
+>
+    💬 Simpan Tanggapan
+</button>
 
                                     `
                                 }
