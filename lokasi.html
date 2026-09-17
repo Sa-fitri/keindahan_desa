@@ -499,49 +499,99 @@
 
     </footer>
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
 
-const form = document.getElementById("kritikForm");
-const status = document.getElementById("statusKritik");
+const scriptURL =
+"https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
+
+
+const form =
+document.getElementById("kritikForm");
+
+const status =
+document.getElementById("statusKritik");
+
 
 form.addEventListener("submit", function(e) {
+
     e.preventDefault();
 
     status.textContent = "Mengirim...";
 
-    const data = new URLSearchParams();
 
-    data.append("action", "kritik");
-    data.append("nama", document.getElementById("nama").value);
-    data.append("asal", document.getElementById("asal").value);
-    data.append("kategori", document.getElementById("kategori").value);
-    data.append("saran", document.getElementById("saran").value);
+    const data =
+    new URLSearchParams();
+
+    data.append(
+        "action",
+        "kritik"
+    );
+
+    data.append(
+        "nama",
+        document.getElementById("nama").value
+    );
+
+    data.append(
+        "asal",
+        document.getElementById("asal").value
+    );
+
+    data.append(
+        "kategori",
+        document.getElementById("kategori").value
+    );
+
+    data.append(
+        "saran",
+        document.getElementById("saran").value
+    );
+
 
     fetch(scriptURL, {
+
         method: "POST",
+
         body: data
+
     })
-    .then(response => response.json())
+
+    .then(response =>
+        response.json()
+    )
+
     .then(result => {
 
         if (result.success) {
-            status.textContent =
-                "✅ Kritik & saran berhasil dikirim!";
+
+            status.innerHTML =
+            "✅ Kritik & saran berhasil dikirim!<br><br>" +
+            "<strong>Kode laporan kamu: " +
+            result.kode +
+            "</strong><br>" +
+            "Simpan kode ini untuk melihat tanggapan admin.";
+
             form.reset();
+
         } else {
+
             status.textContent =
-                "❌ " + result.message;
+            "❌ " + result.message;
+
         }
 
     })
+
     .catch(error => {
 
         console.error(error);
 
         status.textContent =
-            "❌ Gagal mengirim kritik & saran.";
+        "❌ Gagal mengirim kritik & saran.";
+
     });
+
 });
+
 </script>
 
 
