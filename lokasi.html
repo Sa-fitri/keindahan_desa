@@ -11,315 +11,314 @@
     <link rel="stylesheet" href="style.css?v=2">
 
     <style>
+        .kritik-section {
+            width: 100%;
+            padding: 90px 6%;
+            background:
+                linear-gradient(
+                    rgba(247, 248, 243, 0.94),
+                    rgba(247, 248, 243, 0.94)
+                ),
+                url("background-sawah.jpg") center/cover no-repeat;
+        }
 
-/* =========================================
-   KRITIK & SARAN - DESAIN
-========================================= */
+        .kritik-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-.kritik-section {
-    width: 100%;
-    padding: 90px 6%;
-    background:
-        linear-gradient(
-            rgba(247, 248, 243, 0.94),
-            rgba(247, 248, 243, 0.94)
-        ),
-        url("background-sawah.jpg") center/cover no-repeat;
-}
+        .kritik-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-.kritik-container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-}
+        .kritik-header span {
+            display: inline-block;
+            padding: 9px 20px;
+            background: #e4f0e2;
+            color: #355c48;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
 
-.kritik-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
+        .kritik-header h2 {
+            color: #355c48;
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
 
-.kritik-header span {
-    display: inline-block;
-    padding: 9px 20px;
-    background: #e4f0e2;
-    color: #355c48;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-}
+        .kritik-header p {
+            color: #6f7d75;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto;
+        }
 
-.kritik-header h2 {
-    color: #355c48;
-    font-size: 42px;
-    line-height: 1.2;
-    margin-bottom: 15px;
-}
+        #kritikForm {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 40px;
+            border-radius: 28px;
+            box-shadow: 0 12px 35px rgba(53, 92, 72, 0.12);
+            border: 1px solid #e2e9e1;
+            box-sizing: border-box;
+        }
 
-.kritik-header p {
-    color: #6f7d75;
-    font-size: 16px;
-    line-height: 1.7;
-    max-width: 650px;
-    margin: 0 auto;
-}
+        .form-group {
+            width: 100%;
+            margin-bottom: 24px;
+        }
 
-#kritikForm {
-    width: 100%;
-    background: rgba(255,255,255,0.96);
-    padding: 40px;
-    border-radius: 28px;
-    box-shadow: 0 12px 35px rgba(53,92,72,0.12);
-    border: 1px solid #e2e9e1;
-    box-sizing: border-box;
-}
+        .form-group label {
+            display: block;
+            color: #355c48;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 9px;
+        }
 
-.form-group {
-    width: 100%;
-    margin-bottom: 24px;
-}
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ccd8d0;
+            border-radius: 13px;
+            background: #fff;
+            color: #40574b;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+        }
 
-.form-group label {
-    display: block;
-    color: #355c48;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 9px;
-}
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.6;
+        }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1px solid #ccd8d0;
-    border-radius: 13px;
-    background: #ffffff;
-    color: #40574b;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    outline: none;
-    box-sizing: border-box;
-}
+        .btn-kritik {
+            width: 100%;
+            border: none;
+            padding: 15px 20px;
+            background: #356859;
+            color: #fff;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 7px 18px rgba(53, 104, 89, 0.2);
+        }
 
-.form-group textarea {
-    min-height: 150px;
-    resize: vertical;
-    line-height: 1.6;
-}
+        #statusKritik {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            color: #52705f;
+        }
 
-.btn-kritik {
-    width: 100%;
-    border: none;
-    padding: 15px 20px;
-    background: #356859;
-    color: white;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 7px 18px rgba(53,104,89,0.20);
-}
+        .cek-tanggapan {
+            width: 100%;
+            margin-top: 35px;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 12px 35px rgba(53, 92, 72, 0.1);
+            border: 1px solid #e2e9e1;
+            box-sizing: border-box;
+        }
 
-#statusKritik {
-    text-align: center;
-    margin-top: 18px;
-    font-size: 14px;
-    color: #52705f;
-}
+        .cek-tanggapan h3 {
+            margin: 0 0 10px;
+            color: #355c48;
+            font-size: 24px;
+            text-align: center;
+        }
 
+        .cek-tanggapan p {
+            text-align: center;
+            color: #6f7d75;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-/* =========================================
-   CEK TANGGAPAN ADMIN
-========================================= */
+        .cek-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ccd8d0;
+            border-radius: 13px;
+            background: #fff;
+            color: #40574b;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+            margin-bottom: 14px;
+        }
 
-.cek-tanggapan {
-    width: 100%;
-    margin-top: 35px;
-    background: rgba(255,255,255,0.96);
-    padding: 30px;
-    border-radius: 24px;
-    box-shadow: 0 12px 35px rgba(53,92,72,0.10);
-    border: 1px solid #e2e9e1;
-    box-sizing: border-box;
-}
+        .btn-cek {
+            width: 100%;
+            border: none;
+            padding: 14px 20px;
+            background: #527a67;
+            color: #fff;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 7px 18px rgba(53, 104, 89, 0.15);
+        }
 
-.cek-tanggapan h3 {
-    margin: 0 0 10px;
-    color: #355c48;
-    font-size: 24px;
-    text-align: center;
-}
+        #hasilTanggapan {
+            margin-top: 20px;
+            color: #40574b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-.cek-tanggapan p {
-    text-align: center;
-    color: #6f7d75;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
+        @media (max-width: 768px) {
+            .kritik-section {
+                padding: 60px 15px;
+            }
 
-.cek-input {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1px solid #ccd8d0;
-    border-radius: 13px;
-    background: #ffffff;
-    color: #40574b;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    outline: none;
-    box-sizing: border-box;
-    margin-bottom: 14px;
-}
+            .kritik-container {
+                width: 100%;
+            }
 
-.btn-cek {
-    width: 100%;
-    border: none;
-    padding: 14px 20px;
-    background: #527a67;
-    color: white;
-    border-radius: 30px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 7px 18px rgba(53,104,89,0.15);
-}
+            .kritik-header {
+                margin-bottom: 28px;
+            }
 
-#hasilTanggapan {
-    margin-top: 20px;
-    color: #40574b;
-    font-size: 14px;
-    line-height: 1.6;
-}
+            .kritik-header span {
+                font-size: 11px;
+                padding: 7px 14px;
+                margin-bottom: 12px;
+            }
 
+            .kritik-header h2 {
+                font-size: 28px;
+                line-height: 1.25;
+                margin-bottom: 12px;
+            }
 
-/* =========================================
-   HP
-========================================= */
+            .kritik-header p {
+                font-size: 13px;
+                line-height: 1.6;
+            }
 
-@media (max-width: 768px) {
+            #kritikForm {
+                padding: 25px 18px;
+                border-radius: 20px;
+            }
 
-    .kritik-section {
-        padding: 60px 15px;
-    }
+            .form-group {
+                margin-bottom: 18px;
+            }
 
-    .kritik-container {
-        width: 100%;
-    }
+            .form-group label {
+                font-size: 14px;
+                margin-bottom: 7px;
+            }
 
-    .kritik-header {
-        margin-bottom: 28px;
-    }
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 12px 13px;
+                font-size: 14px;
+                border-radius: 11px;
+            }
 
-    .kritik-header span {
-        font-size: 11px;
-        padding: 7px 14px;
-        margin-bottom: 12px;
-    }
+            .form-group textarea {
+                min-height: 125px;
+            }
 
-    .kritik-header h2 {
-        font-size: 28px;
-        line-height: 1.25;
-        margin-bottom: 12px;
-    }
+            .btn-kritik {
+                padding: 13px 15px;
+                font-size: 14px;
+            }
 
-    .kritik-header p {
-        font-size: 13px;
-        line-height: 1.6;
-    }
+            #statusKritik {
+                font-size: 13px;
+                line-height: 1.5;
+            }
 
-    #kritikForm {
-        padding: 25px 18px;
-        border-radius: 20px;
-    }
+            .cek-tanggapan {
+                padding: 22px 18px;
+                border-radius: 20px;
+            }
 
-    .form-group {
-        margin-bottom: 18px;
-    }
+            .cek-tanggapan h3 {
+                font-size: 21px;
+            }
 
-    .form-group label {
-        font-size: 14px;
-        margin-bottom: 7px;
-    }
+            .cek-tanggapan p {
+                font-size: 13px;
+            }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 12px 13px;
-        font-size: 14px;
-        border-radius: 11px;
-    }
+            .cek-input {
+                padding: 12px 13px;
+                font-size: 14px;
+            }
 
-    .form-group textarea {
-        min-height: 125px;
-    }
-
-    .btn-kritik {
-        padding: 13px 15px;
-        font-size: 14px;
-    }
-
-    #statusKritik {
-        font-size: 13px;
-        line-height: 1.5;
-    }
-
-    .cek-tanggapan {
-        padding: 22px 18px;
-        border-radius: 20px;
-    }
-
-    .cek-tanggapan h3 {
-        font-size: 21px;
-    }
-
-    .cek-tanggapan p {
-        font-size: 13px;
-    }
-
-    .cek-input {
-        padding: 12px 13px;
-        font-size: 14px;
-    }
-
-    .btn-cek {
-        padding: 13px 15px;
-        font-size: 14px;
-    }
-}
-
-</style>
+            .btn-cek {
+                padding: 13px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1 style="color:red !important; font-size:50px !important; text-align:center;">
+    <!-- TEST -->
+    <h1 style="color: red !important; font-size: 50px !important; text-align: center;">
         TES LOKASI
     </h1>
 
-
     <!-- NAVBAR -->
     <nav class="navbar">
-
         <div class="logo">
             🌿 <span>Desa Sepinggan Kecil</span>
         </div>
 
         <ul class="nav-links">
+            <li>
+                <a href="index.html">Beranda</a>
+            </li>
 
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="tentang.html">Tentang Desa</a></li>
-            <li><a href="kehidupan.html">Kehidupan Desa</a></li>
-            <li><a href="keindahan.html">Keindahan</a></li>
-            <li><a href="galeri.html">Galeri</a></li>
-            <li><a href="lokasi.html" class="active">Lokasi</a></li>
-            <li><a href="admin.html" class="admin-link">Admin</a></li>
+            <li>
+                <a href="tentang.html">Tentang Desa</a>
+            </li>
 
+            <li>
+                <a href="kehidupan.html">Kehidupan Desa</a>
+            </li>
+
+            <li>
+                <a href="keindahan.html">Keindahan</a>
+            </li>
+
+            <li>
+                <a href="galeri.html">Galeri</a>
+            </li>
+
+            <li>
+                <a href="lokasi.html" class="active">Lokasi</a>
+            </li>
+
+            <li>
+                <a href="admin.html" class="admin-link">Admin</a>
+            </li>
         </ul>
-
     </nav>
 
 
@@ -335,7 +334,6 @@
         </div>
 
         <div class="lokasi-hero-content">
-
             <span>📍 LOKASI DESA</span>
 
             <h1>
@@ -343,10 +341,8 @@
             </h1>
 
             <p>
-                Kenali lokasi Desa Sepinggan Kecil
-                dan temukan letaknya dengan mudah.
+                Kenali lokasi Desa Sepinggan Kecil dan temukan letaknya dengan mudah.
             </p>
-
         </div>
 
     </section>
@@ -368,8 +364,8 @@
                 </h2>
 
                 <p class="lokasi-description">
-                    Desa Sepinggan Kecil berada di Kecamatan
-                    Semparuk, Kabupaten Sambas, Kalimantan Barat.
+                    Desa Sepinggan Kecil berada di Kecamatan Semparuk,
+                    Kabupaten Sambas, Kalimantan Barat.
                 </p>
 
                 <div class="lokasi-detail">
@@ -377,37 +373,30 @@
                     <span>📌</span>
 
                     <div>
-
-                        <strong>
-                            Wilayah
-                        </strong>
+                        <strong>Wilayah</strong>
 
                         <p>
-                            Kecamatan Semparuk,
-                            Kabupaten Sambas
+                            Kecamatan Semparuk, Kabupaten Sambas
                         </p>
-
                     </div>
 
                 </div>
+
 
                 <div class="lokasi-detail">
 
                     <span>🌿</span>
 
                     <div>
-
-                        <strong>
-                            Kalimantan Barat
-                        </strong>
+                        <strong>Kalimantan Barat</strong>
 
                         <p>
                             Indonesia
                         </p>
-
                     </div>
 
                 </div>
+
 
                 <div class="lokasi-koordinat">
 
@@ -421,13 +410,13 @@
 
                 </div>
 
+
                 <a
                     href="https://maps.app.goo.gl/rBFP2U5MNXbjNjPLA?g_st=aw"
                     target="_blank"
-                    class="btn-lokasi">
-
+                    class="btn-lokasi"
+                >
                     🗺️ Buka di Google Maps ↗
-
                 </a>
 
             </div>
@@ -435,21 +424,20 @@
         </div>
 
 
-        <!-- PETA -->
         <div class="lokasi-map">
 
             <iframe
                 src="https://www.google.com/maps?q=1.1555548,109.0989456&z=16&output=embed"
                 loading="lazy"
-                allowfullscreen>
-            </iframe>
+                allowfullscreen
+            ></iframe>
 
         </div>
 
     </section>
 
 
-    <!-- KRITIK & SARAN -->
+    <!-- KRITIK DAN SARAN -->
     <section class="kritik-section">
 
         <div class="kritik-container">
@@ -457,7 +445,7 @@
             <div class="kritik-header">
 
                 <span>
-                    💬 KRITIK & SARAN
+                    💬 KRITIK &amp; SARAN
                 </span>
 
                 <h2>
@@ -486,7 +474,8 @@
                         id="nama"
                         name="nama"
                         placeholder="Masukkan nama kamu"
-                        required>
+                        required
+                    >
 
                 </div>
 
@@ -502,7 +491,8 @@
                         id="asal"
                         name="asal"
                         placeholder="Contoh: Desa Sepinggan Kecil"
-                        required>
+                        required
+                    >
 
                 </div>
 
@@ -516,8 +506,8 @@
                     <select
                         id="kategori"
                         name="kategori"
-                        required>
-
+                        required
+                    >
                         <option value="">
                             Pilih kategori
                         </option>
@@ -545,7 +535,6 @@
                         <option value="Lainnya">
                             Lainnya
                         </option>
-
                     </select>
 
                 </div>
@@ -562,25 +551,26 @@
                         name="saran"
                         rows="5"
                         placeholder="Tuliskan kritik atau saran kamu..."
-                        required></textarea>
+                        required
+                    ></textarea>
 
                 </div>
 
 
                 <button
                     type="submit"
-                    class="btn-kritik">
-
-                    📩 Kirim Kritik & Saran
-
+                    class="btn-kritik"
+                >
+                    📩 Kirim Kritik &amp; Saran
                 </button>
+
 
                 <p id="statusKritik"></p>
 
             </form>
 
 
-            <!-- CEK TANGGAPAN ADMIN -->
+            <!-- CEK TANGGAPAN -->
             <div class="cek-tanggapan">
 
                 <h3>
@@ -588,16 +578,374 @@
                 </h3>
 
                 <p>
-                    Masukkan kode laporan yang kamu dapat
-                    setelah mengirim kritik atau saran.
+                    Masukkan kode laporan yang kamu dapat setelah
+                    mengirim kritik atau saran.
                 </p>
 
                 <input
                     type="text"
                     id="kodeCek"
                     class="cek-input"
-                    placeholder="Contoh: KS-001">
+                    placeholder="Contoh: KS-001"
+                >
 
                 <button
                     type="button"
-                    class="btn-
+                    class="btn-cek"
+                    onclick="cekTanggapanAdmin()"
+                >
+                    🔎 Cek Tanggapan
+                </button>
+
+                <div id="hasilTanggapan"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>
+            © 2026 Desa Sepinggan Kecil. Semua hak dilindungi.
+        </p>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        const scriptURL =
+            "https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
+
+
+        // ==========================================
+        // KIRIM KRITIK & SARAN
+        // ==========================================
+
+        document
+            .getElementById("kritikForm")
+            .addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                const form = this;
+
+                const status =
+                    document.getElementById("statusKritik");
+
+                const nama =
+                    document.getElementById("nama").value.trim();
+
+                const asal =
+                    document.getElementById("asal").value.trim();
+
+                const kategori =
+                    document.getElementById("kategori").value;
+
+                const saran =
+                    document.getElementById("saran").value.trim();
+
+
+                if (!nama || !asal || !kategori || !saran) {
+
+                    status.textContent =
+                        "⚠️ Mohon lengkapi semua data.";
+
+                    return;
+                }
+
+
+                status.textContent =
+                    "⏳ Mengirim kritik & saran...";
+
+
+                const callbackName =
+                    "kritikCallback_" + Date.now();
+
+
+                let selesai = false;
+                let script = null;
+                let timeoutId = null;
+
+
+                function cleanup() {
+
+                    delete window[callbackName];
+
+                    if (timeoutId) {
+                        clearTimeout(timeoutId);
+                    }
+
+                    if (script && script.parentNode) {
+                        script.parentNode.removeChild(script);
+                    }
+                }
+
+
+                window[callbackName] = function (result) {
+
+                    if (selesai) return;
+
+                    selesai = true;
+
+
+                    if (result && result.success) {
+
+                        status.innerHTML =
+                            "✅ Kritik & saran berhasil dikirim!<br>" +
+                            "Kode laporan kamu: <strong>" +
+                            escapeHtml(result.kode) +
+                            "</strong>";
+
+                        form.reset();
+
+                    } else {
+
+                        status.textContent =
+                            "❌ " +
+                            (
+                                (result && result.message) ||
+                                "Gagal mengirim data."
+                            );
+                    }
+
+
+                    cleanup();
+                };
+
+
+                const params =
+                    "?action=kritik" +
+                    "&nama=" + encodeURIComponent(nama) +
+                    "&asal=" + encodeURIComponent(asal) +
+                    "&kategori=" + encodeURIComponent(kategori) +
+                    "&saran=" + encodeURIComponent(saran) +
+                    "&callback=" + encodeURIComponent(callbackName);
+
+
+                script =
+                    document.createElement("script");
+
+                script.src =
+                    scriptURL + params;
+
+
+                script.onerror = function () {
+
+                    if (selesai) return;
+
+                    selesai = true;
+
+                    status.textContent =
+                        "❌ Gagal terhubung ke server.";
+
+                    cleanup();
+                };
+
+
+                document.body.appendChild(script);
+
+
+                timeoutId = setTimeout(function () {
+
+                    if (selesai) return;
+
+                    selesai = true;
+
+                    status.textContent =
+                        "❌ Waktu koneksi habis. Silakan coba lagi.";
+
+                    cleanup();
+
+                }, 15000);
+
+            });
+
+
+        // ==========================================
+        // CEK TANGGAPAN ADMIN
+        // ==========================================
+
+        function cekTanggapanAdmin() {
+
+            const kode =
+                document.getElementById("kodeCek").value.trim();
+
+            const hasil =
+                document.getElementById("hasilTanggapan");
+
+
+            if (!kode) {
+
+                hasil.innerHTML =
+                    "⚠️ Masukkan kode laporan terlebih dahulu.";
+
+                return;
+            }
+
+
+            hasil.innerHTML =
+                "🔄 Memeriksa tanggapan...";
+
+
+            const callbackName =
+                "cekCallback_" + Date.now();
+
+
+            let selesai = false;
+            let script = null;
+            let timeoutId = null;
+
+
+            function cleanup() {
+
+                delete window[callbackName];
+
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+
+                if (script && script.parentNode) {
+                    script.parentNode.removeChild(script);
+                }
+            }
+
+
+            window[callbackName] = function (result) {
+
+                if (selesai) return;
+
+                selesai = true;
+
+
+                if (!result || !result.success) {
+
+                    hasil.innerHTML =
+                        "❌ " +
+                        escapeHtml(
+                            (result && result.message) ||
+                            "Kode laporan tidak ditemukan."
+                        );
+
+                } else {
+
+                    const data =
+                        result.data || {};
+
+
+                    let html =
+                        "<strong>Kode:</strong> " +
+                        escapeHtml(data.kode) +
+                        "<br>" +
+
+                        "<strong>Nama:</strong> " +
+                        escapeHtml(data.nama) +
+                        "<br>" +
+
+                        "<strong>Kategori:</strong> " +
+                        escapeHtml(data.kategori) +
+                        "<br>" +
+
+                        "<strong>Status:</strong> " +
+                        escapeHtml(
+                            data.status ||
+                            "Belum Ditanggapi"
+                        ) +
+
+                        "<br><br>";
+
+
+                    if (
+                        data.status ===
+                        "Sudah Ditanggapi"
+                    ) {
+
+                        html +=
+                            "<strong>💬 Tanggapan Admin:</strong><br>" +
+                            escapeHtml(
+                                data.tanggapan ||
+                                "Belum ada isi tanggapan."
+                            );
+
+                    } else {
+
+                        html +=
+                            "⏳ Kritik atau saran kamu belum ditanggapi admin.";
+                    }
+
+
+                    hasil.innerHTML = html;
+                }
+
+
+                cleanup();
+            };
+
+
+            script =
+                document.createElement("script");
+
+
+            script.src =
+                scriptURL +
+                "?action=cekTanggapan" +
+                "&kode=" +
+                encodeURIComponent(kode) +
+                "&callback=" +
+                encodeURIComponent(callbackName);
+
+
+            script.onerror = function () {
+
+                if (selesai) return;
+
+                selesai = true;
+
+                hasil.innerHTML =
+                    "❌ Gagal terhubung ke server.";
+
+                cleanup();
+            };
+
+
+            document.body.appendChild(script);
+
+
+            timeoutId = setTimeout(function () {
+
+                if (selesai) return;
+
+                selesai = true;
+
+                hasil.innerHTML =
+                    "❌ Waktu koneksi habis. Silakan coba lagi.";
+
+                cleanup();
+
+            }, 15000);
+
+        }
+
+
+        // ==========================================
+        // AMANKAN OUTPUT HTML
+        // ==========================================
+
+        function escapeHtml(text) {
+
+            return String(text || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+    </script>
+
+</body>
+
+</html>
