@@ -443,80 +443,69 @@
 
 
         // KIRIM TANGGAPAN
-        function kirimTanggapan(baris) {
+        function kirimTanggapan(kode) {
 
-            const textarea =
-                document.getElementById(
-                    "tanggapan-" + baris
-                );
+    const textarea =
+        document.getElementById(
+            "tanggapan-" + kode
+        );
 
+    if (!textarea) return;
 
-            if (!textarea) return;
+    const tanggapan =
+        textarea.value.trim();
 
+    if (!tanggapan) {
 
-            const tanggapan =
-                textarea.value.trim();
+        alert(
+            "⚠️ Tanggapan belum diisi."
+        );
 
+        return;
+    }
 
-            if (!tanggapan) {
+    const callbackName =
+        "callbackTanggapan" + Date.now();
 
-                alert(
-                    "⚠️ Tanggapan belum diisi."
-                );
+    window[callbackName] = function(response) {
 
-                return;
-            }
+        if (response.success) {
 
+            alert(
+                "✅ Tanggapan berhasil disimpan."
+            );
 
-            const callbackName =
-                "callbackTanggapan" + Date.now();
+            loadKritik();
 
+        } else {
 
-            window[callbackName] = function(response) {
-
-                if (response.success) {
-
-                    alert(
-                        "✅ Tanggapan berhasil disimpan."
-                    );
-
-                    loadKritik();
-
-                } else {
-
-                    alert(
-                        "❌ Gagal menyimpan tanggapan: " +
-                        (response.message || "")
-                    );
-
-                }
-
-
-                delete window[callbackName];
-
-            };
-
-
-            const script =
-                document.createElement("script");
-
-
-            script.src =
-                SCRIPT_URL +
-                "?action=tanggapan" +
-                "&baris=" +
-                encodeURIComponent(baris) +
-                "&tanggapan=" +
-                encodeURIComponent(tanggapan) +
-                "&callback=" +
-                encodeURIComponent(callbackName);
-
-
-            document.body.appendChild(script);
+            alert(
+                "❌ Gagal menyimpan tanggapan: " +
+                (response.message || "")
+            );
 
         }
 
+        delete window[callbackName];
 
+    };
+
+    const script =
+        document.createElement("script");
+
+    script.src =
+        SCRIPT_URL +
+        "?action=tanggapan" +
+        "&kode=" +
+        encodeURIComponent(kode) +
+        "&tanggapan=" +
+        encodeURIComponent(tanggapan) +
+        "&callback=" +
+        encodeURIComponent(callbackName);
+
+    document.body.appendChild(script);
+
+}
         // HAPUS DATA
         function hapusKritik(baris) {
 
