@@ -13,7 +13,7 @@
 
 <body>
 
-    <!-- NAVBAR ADMIN -->
+    <!-- NAVBAR -->
     <nav class="admin-navbar">
 
         <div class="admin-logo">
@@ -21,11 +21,15 @@
         </div>
 
         <div class="admin-nav-right">
-            <span class="admin-name">👤 Admin</span>
+
+            <span class="admin-name">
+                👤 Admin
+            </span>
 
             <button class="logout-button" onclick="logout()">
                 Keluar
             </button>
+
         </div>
 
     </nav>
@@ -34,18 +38,21 @@
     <!-- DASHBOARD -->
     <main class="dashboard">
 
+        <!-- WELCOME -->
         <section class="welcome">
 
-            <div>
-                <span class="welcome-label">PANEL ADMIN</span>
+            <span class="welcome-label">
+                PANEL ADMIN
+            </span>
 
-                <h1>Selamat Datang, Admin! 👋</h1>
+            <h1>
+                Selamat Datang, Admin! 👋
+            </h1>
 
-                <p>
-                    Kelola kritik dan saran dari pengunjung
-                    website Desa Sepinggan Kecil.
-                </p>
-            </div>
+            <p>
+                Kelola kritik dan saran dari pengunjung
+                website Desa Sepinggan Kecil.
+            </p>
 
         </section>
 
@@ -102,26 +109,23 @@
 
             <div class="section-title">
 
-                <div>
-                    <span>DATA PENGUNJUNG</span>
-                    <h2>Kritik & Saran</h2>
-                </div>
+                <span>
+                    DATA PENGUNJUNG
+                </span>
+
+                <h2>
+                    Kritik & Saran
+                </h2>
 
             </div>
 
 
-            <div class="empty-data">
+            <!-- TEMPAT DATA -->
+            <div id="dataKritik">
 
-                <div class="empty-icon">
-                    💬
+                <div class="loading-data">
+                    Memuat data kritik & saran...
                 </div>
-
-                <h3>Belum ada data</h3>
-
-                <p>
-                    Data kritik dan saran pengunjung
-                    akan muncul di sini.
-                </p>
 
             </div>
 
@@ -132,13 +136,18 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2026 Desa Sepinggan Kecil • Panel Admin</p>
+
+        <p>
+            © 2026 Desa Sepinggan Kecil • Panel Admin
+        </p>
+
     </footer>
 
 
-    <script>
+<script>
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw03pqlgLR-kJ0K2j-kciwQhJn6vDgWad0voFVHW7yNX9Fiwwah1rcnFhH3oQ2qlvfcyg/exec";
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbyLOn02MhHMB_BQEyyazog77Fo2GUM3lrh58qTKXgduYdpmyoyQLc6c6ewudoATn0Mh/exec";
 
 
 // ==========================================
@@ -153,31 +162,33 @@ if (sessionStorage.getItem("adminLoggedIn") !== "true") {
 
 
 // ==========================================
-// AMBIL DATA KRITIK & SARAN
+// LOGOUT
 // ==========================================
 
-async function loadData() {
+function logout() {
+
+    sessionStorage.removeItem("adminLoggedIn");
+
+    window.location.href = "admin.html";
+
+}
+
+
+// ==========================================
+// AMBIL DATA KRITIK
+// ==========================================
+
+async function loadKritik() {
 
     const container =
         document.getElementById("dataKritik");
 
     try {
 
-        container.innerHTML =
-            "<p>Memuat data...</p>";
-
-
-        const response = await fetch(
-            SCRIPT_URL,
-            {
-                method: "POST",
-
-                body: new URLSearchParams({
-                    action: "getDataAdmin"
-                })
-            }
-        );
-
+        const response =
+            await fetch(
+                SCRIPT_URL + "?action=dashboard"
+            );
 
         const result =
             await response.json();
@@ -185,32 +196,83 @@ async function loadData() {
 
         if (!result.success) {
 
-            container.innerHTML =
-                "<p>Gagal mengambil data.</p>";
+            container.innerHTML = `
+                <div class="empty-data">
+                    <div class="empty-icon">⚠️</div>
+                    <h3>Data tidak dapat dimuat</h3>
+                    <p>${result.message || "Terjadi kesalahan."}</p>
+                </div>
+            `;
 
             return;
+
         }
 
 
-        const data = result.data || [];
+        const data =
+            result.data || [];
 
 
-        // ==================================
-        // JIKA BELUM ADA DATA
-        // ==================================
+        // ======================================
+        // STATISTIK
+        // ======================================
+
+        document.getElementById("totalKritik").textContent =
+            data.length;
+
+
+        const belum =
+            data.filter(item =>
+                item.status !== "Sudah Ditanggapi"
+            ).length;
+
+
+        const sudah =
+            data.filter(item =>
+                item.status === "Sudah Ditanggapi"
+            ).length;
+
+
+        document.getElementById("belumDitanggapi").textContent =
+            belum;
+
+
+        document.getElementById("sudahDitanggapi").textContent =
+            sudah;
+
+
+        // ======================================
+        // BELUM ADA DATA
+        // ======================================
 
         if (data.length === 0) {
 
-            container.innerHTML =
-                "<p>Belum ada Kritik & Saran.</p>";
+            container.innerHTML = `
+                <div class="empty-data">
+
+                    <div class="empty-icon">
+                        💬
+                    </div>
+
+                    <h3>
+                        Belum ada kritik & saran
+                    </h3>
+
+                    <p>
+                        Data dari pengunjung akan muncul di sini.
+                    </p>
+
+                </div>
+            `;
 
             return;
+
         }
 
 
-        // ==================================
+        // ======================================
         // TAMPILKAN DATA
-        // ==================================
+        // ======================================
 
         container.innerHTML = "";
 
@@ -220,71 +282,114 @@ async function loadData() {
             const card =
                 document.createElement("div");
 
-            card.className = "kritik-card";
+            card.className =
+                "kritik-card";
+
+
+            const sudahDitanggapi =
+                item.status === "Sudah Ditanggapi";
 
 
             card.innerHTML = `
 
-                <div class="kritik-card-header">
+                <div class="kritik-top">
 
-                    <strong>${item.kode}</strong>
+                    <div>
 
-                    <span>
-                        ${item.status}
+                        <span class="kode">
+                            ${escapeHTML(item.kode)}
+                        </span>
+
+                        <h3>
+                            👤 ${escapeHTML(item.nama)}
+                        </h3>
+
+                    </div>
+
+                    <span class="status ${
+                        sudahDitanggapi
+                        ? "status-sudah"
+                        : "status-belum"
+                    }">
+
+                        ${
+                            sudahDitanggapi
+                            ? "✓ Sudah Ditanggapi"
+                            : "• Belum Ditanggapi"
+                        }
+
                     </span>
 
                 </div>
 
 
-                <p>
-                    <b>Nama:</b>
-                    ${item.nama}
-                </p>
+                <div class="kritik-info">
+
+                    <p>
+                        <strong>Asal:</strong>
+                        ${escapeHTML(item.asal)}
+                    </p>
+
+                    <p>
+                        <strong>Kategori:</strong>
+                        ${escapeHTML(item.kategori)}
+                    </p>
+
+                    <p>
+                        <strong>Tanggal:</strong>
+                        ${formatTanggal(item.tanggal)}
+                    </p>
+
+                </div>
 
 
-                <p>
-                    <b>Asal:</b>
-                    ${item.asal}
-                </p>
+                <div class="kritik-message">
+
+                    <strong>Kritik / Saran</strong>
+
+                    <p>
+                        ${escapeHTML(item.saran)}
+                    </p>
+
+                </div>
 
 
-                <p>
-                    <b>Kategori:</b>
-                    ${item.kategori}
-                </p>
+                <div class="tanggapan-box">
+
+                    <strong>
+                        🛡️ Tanggapan Admin
+                    </strong>
 
 
-                <p>
-                    <b>Kritik / Saran:</b><br>
-                    ${item.saran}
-                </p>
+                    ${
+                        sudahDitanggapi
 
+                        ?
 
-                <p>
-                    <b>Tanggal:</b>
-                    ${item.tanggal}
-                </p>
+                        `
+                        <div class="tanggapan-sudah">
+                            ${escapeHTML(item.tanggapan)}
+                        </div>
+                        `
 
+                        :
 
-                <hr>
+                        `
+                        <textarea
+                            id="tanggapan-${item.baris}"
+                            placeholder="Tulis tanggapan untuk pengunjung..."
+                        ></textarea>
 
+                        <button
+                            class="btn-tanggapan"
+                            onclick="kirimTanggapan(${item.baris})"
+                        >
+                            💬 Simpan Tanggapan
+                        </button>
+                        `
+                    }
 
-                <label>
-                    Tanggapan Admin
-                </label>
-
-
-                <textarea
-                    id="tanggapan-${item.kode}"
-                    placeholder="Tulis tanggapan..."
-                >${item.tanggapan || ""}</textarea>
-
-
-                <button
-                    onclick="simpanTanggapan('${item.kode}')"
-                >
-                    💬 Simpan Tanggapan
-                </button>
+                </div>
 
             `;
 
@@ -293,13 +398,32 @@ async function loadData() {
 
         });
 
+    }
 
-    } catch (error) {
+
+    catch (error) {
 
         console.error(error);
 
-        container.innerHTML =
-            "<p>Terjadi kesalahan saat mengambil data.</p>";
+        container.innerHTML = `
+
+            <div class="empty-data">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    Gagal memuat data
+                </h3>
+
+                <p>
+                    Periksa koneksi dan URL Google Apps Script.
+                </p>
+
+            </div>
+
+        `;
 
     }
 
@@ -307,14 +431,14 @@ async function loadData() {
 
 
 // ==========================================
-// SIMPAN TANGGAPAN
+// KIRIM TANGGAPAN
 // ==========================================
 
-async function simpanTanggapan(kode) {
+async function kirimTanggapan(baris) {
 
     const textarea =
         document.getElementById(
-            "tanggapan-" + kode
+            "tanggapan-" + baris
         );
 
 
@@ -327,30 +451,28 @@ async function simpanTanggapan(kode) {
         alert("Tanggapan belum diisi.");
 
         return;
+
     }
 
 
     try {
 
         const response =
-            await fetch(
-                SCRIPT_URL,
-                {
+            await fetch(SCRIPT_URL, {
 
-                    method: "POST",
+                method: "POST",
 
-                    body: new URLSearchParams({
+                body: new URLSearchParams({
 
-                        action: "tanggapi",
+                    action: "tanggapan",
 
-                        kode: kode,
+                    baris: baris,
 
-                        tanggapan: tanggapan
+                    tanggapan: tanggapan
 
-                    })
+                })
 
-                }
-            );
+            });
 
 
         const result =
@@ -360,10 +482,10 @@ async function simpanTanggapan(kode) {
         if (result.success) {
 
             alert(
-                "Tanggapan berhasil disimpan!"
+                "✅ Tanggapan berhasil disimpan!"
             );
 
-            loadData();
+            loadKritik();
 
         } else {
 
@@ -374,13 +496,14 @@ async function simpanTanggapan(kode) {
 
         }
 
+    }
 
-    } catch (error) {
+    catch (error) {
 
         console.error(error);
 
         alert(
-            "Terjadi kesalahan saat menyimpan."
+            "Gagal terhubung ke Google Apps Script."
         );
 
     }
@@ -389,26 +512,65 @@ async function simpanTanggapan(kode) {
 
 
 // ==========================================
-// LOGOUT
+// FORMAT TANGGAL
 // ==========================================
 
-function logout() {
+function formatTanggal(tanggal) {
 
-    sessionStorage.removeItem(
-        "adminLoggedIn"
+    if (!tanggal) {
+        return "-";
+    }
+
+    const date =
+        new Date(tanggal);
+
+
+    if (isNaN(date.getTime())) {
+        return tanggal;
+    }
+
+
+    return date.toLocaleDateString(
+        "id-ID",
+        {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        }
     );
-
-    window.location.href =
-        "admin.html";
 
 }
 
 
 // ==========================================
-// JALANKAN SAAT DASHBOARD DIBUKA
+// AMANKAN TEKS HTML
 // ==========================================
 
-loadData();
+function escapeHTML(text) {
+
+    if (text === null ||
+        text === undefined) {
+
+        return "";
+
+    }
+
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+// ==========================================
+// JALANKAN
+// ==========================================
+
+loadKritik();
 
 </script>
 
