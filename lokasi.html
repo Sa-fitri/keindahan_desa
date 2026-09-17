@@ -1036,13 +1036,12 @@
 
 
             script.src =
-                scriptURL +
-                "?action=cekTanggapan" +
-                "&kode=" +
-                encodeURIComponent(kode) +
-                "&callback=" +
-                encodeURIComponent(callbackName);
-
+    SCRIPT_URL +
+    "?action=cekTanggapan" +
+    "&kode=" +
+    encodeURIComponent(kode) +
+    "&callback=" +
+    encodeURIComponent(callbackName);
 
             script.onerror =
                 function() {
