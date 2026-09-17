@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Lokasi - Desa Sepinggan Kecil</title>
-    
-   <link rel="icon" type="image/png" href="favicon.png">
-   <link rel="stylesheet" href="style.css?v=2">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css?v=2">
+
     <style>
 
 /* =========================================
@@ -71,6 +72,7 @@
     border-radius: 28px;
     box-shadow: 0 12px 35px rgba(53,92,72,0.12);
     border: 1px solid #e2e9e1;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -125,6 +127,71 @@
     margin-top: 18px;
     font-size: 14px;
     color: #52705f;
+}
+
+
+/* =========================================
+   CEK TANGGAPAN ADMIN
+========================================= */
+
+.cek-tanggapan {
+    width: 100%;
+    margin-top: 35px;
+    background: rgba(255,255,255,0.96);
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(53,92,72,0.10);
+    border: 1px solid #e2e9e1;
+    box-sizing: border-box;
+}
+
+.cek-tanggapan h3 {
+    margin: 0 0 10px;
+    color: #355c48;
+    font-size: 24px;
+    text-align: center;
+}
+
+.cek-tanggapan p {
+    text-align: center;
+    color: #6f7d75;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.cek-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ccd8d0;
+    border-radius: 13px;
+    background: #ffffff;
+    color: #40574b;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 14px;
+}
+
+.btn-cek {
+    width: 100%;
+    border: none;
+    padding: 14px 20px;
+    background: #527a67;
+    color: white;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(53,104,89,0.15);
+}
+
+#hasilTanggapan {
+    margin-top: 20px;
+    color: #40574b;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 
@@ -199,22 +266,48 @@
         font-size: 13px;
         line-height: 1.5;
     }
+
+    .cek-tanggapan {
+        padding: 22px 18px;
+        border-radius: 20px;
+    }
+
+    .cek-tanggapan h3 {
+        font-size: 21px;
+    }
+
+    .cek-tanggapan p {
+        font-size: 13px;
+    }
+
+    .cek-input {
+        padding: 12px 13px;
+        font-size: 14px;
+    }
+
+    .btn-cek {
+        padding: 13px 15px;
+        font-size: 14px;
+    }
 }
 
 </style>
 </head>
 
 <body>
+
+    <!-- TES LOKASI -->
     <h1 style="color:red !important; font-size:50px !important; text-align:center;">
-    TES LOKASI
-</h1>
+        TES LOKASI
+    </h1>
+
 
     <!-- NAVBAR -->
     <nav class="navbar">
 
         <div class="logo">
-    🌿 <span>Desa Sepinggan Kecil</span>
-</div>
+            🌿 <span>Desa Sepinggan Kecil</span>
+        </div>
 
         <ul class="nav-links">
 
@@ -241,10 +334,10 @@
             <li>
                 <a href="lokasi.html" class="active">Lokasi</a>
             </li>
-            
-             <li>
-                 <a href="admin.html" class="admin-link">Admin</a>
-             </li>
+
+            <li>
+                <a href="admin.html" class="admin-link">Admin</a>
+            </li>
 
         </ul>
 
@@ -300,7 +393,6 @@
                     Semparuk, Kabupaten Sambas, Kalimantan Barat.
                 </p>
 
-
                 <!-- WILAYAH -->
                 <div class="lokasi-detail">
 
@@ -321,7 +413,6 @@
 
                 </div>
 
-
                 <!-- PROVINSI -->
                 <div class="lokasi-detail">
 
@@ -341,7 +432,6 @@
 
                 </div>
 
-
                 <!-- KOORDINAT -->
                 <div class="lokasi-koordinat">
 
@@ -354,7 +444,6 @@
                     </p>
 
                 </div>
-
 
                 <!-- TOMBOL GOOGLE MAPS -->
                 <a
@@ -383,111 +472,176 @@
         </div>
 
     </section>
+
+
     <!-- KRITIK & SARAN -->
-<section class="kritik-section">
+    <section class="kritik-section">
 
-    <div class="kritik-container">
+        <div class="kritik-container">
 
-        <div class="kritik-header">
-            <span>💬 KRITIK & SARAN</span>
+            <div class="kritik-header">
 
-            <h2>
-                Sampaikan Pendapatmu
-            </h2>
+                <span>
+                    💬 KRITIK & SARAN
+                </span>
 
-            <p>
-                Bantu kami mengembangkan website Desa Sepinggan Kecil
-                menjadi lebih baik.
-            </p>
+                <h2>
+                    Sampaikan Pendapatmu
+                </h2>
+
+                <p>
+                    Bantu kami mengembangkan website Desa Sepinggan Kecil
+                    menjadi lebih baik.
+                </p>
+
+            </div>
+
+
+            <!-- FORM KRITIK -->
+            <form id="kritikForm">
+
+                <div class="form-group">
+
+                    <label for="nama">
+                        Nama
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama"
+                        name="nama"
+                        placeholder="Masukkan nama kamu"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="asal">
+                        Asal
+                    </label>
+
+                    <input
+                        type="text"
+                        id="asal"
+                        name="asal"
+                        placeholder="Contoh: Desa Sepinggan Kecil"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="kategori">
+                        Kategori
+                    </label>
+
+                    <select
+                        id="kategori"
+                        name="kategori"
+                        required>
+
+                        <option value="">
+                            Pilih kategori
+                        </option>
+
+                        <option value="Tampilan Website">
+                            Tampilan Website
+                        </option>
+
+                        <option value="Informasi">
+                            Informasi
+                        </option>
+
+                        <option value="Fitur">
+                            Fitur
+                        </option>
+
+                        <option value="Konten">
+                            Konten
+                        </option>
+
+                        <option value="Saran Umum">
+                            Saran Umum
+                        </option>
+
+                        <option value="Lainnya">
+                            Lainnya
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="saran">
+                        Kritik / Saran
+                    </label>
+
+                    <textarea
+                        id="saran"
+                        name="saran"
+                        rows="5"
+                        placeholder="Tuliskan kritik atau saran kamu..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-kritik">
+
+                    📩 Kirim Kritik & Saran
+
+                </button>
+
+                <p id="statusKritik"></p>
+
+            </form>
+
+
+            <!-- ======================================
+                 CEK TANGGAPAN ADMIN
+            ======================================= -->
+
+            <div class="cek-tanggapan">
+
+                <h3>
+                    📋 Cek Tanggapan Admin
+                </h3>
+
+                <p>
+                    Masukkan kode laporan yang kamu dapat
+                    setelah mengirim kritik atau saran.
+                </p>
+
+                <input
+                    type="text"
+                    id="kodeCek"
+                    class="cek-input"
+                    placeholder="Contoh: KS-001">
+
+                <button
+                    type="button"
+                    class="btn-cek"
+                    onclick="cekTanggapanAdmin()">
+
+                    🔎 Cek Tanggapan
+
+                </button>
+
+                <div id="hasilTanggapan"></div>
+
+            </div>
+
         </div>
 
-
-        <form id="kritikForm">
-
-            <div class="form-group">
-                <label for="nama">Nama</label>
-
-                <input
-                    type="text"
-                    id="nama"
-                    name="nama"
-                    placeholder="Masukkan nama kamu"
-                    required>
-            </div>
-
-
-            <div class="form-group">
-                <label for="asal">Asal</label>
-
-                <input
-                    type="text"
-                    id="asal"
-                    name="asal"
-                    placeholder="Contoh: Desa Sepinggan Kecil"
-                    required>
-            </div>
-
-
-            <div class="form-group">
-                <label for="kategori">Kategori</label>
-
-                <select id="kategori" name="kategori" required>
-
-                    <option value="">
-                        Pilih kategori
-                    </option>
-
-                    <option value="Tampilan Website">
-                        Tampilan Website
-                    </option>
-
-                    <option value="Informasi">
-                        Informasi
-                    </option>
-
-                    <option value="Fitur">
-                        Fitur
-                    </option>
-
-                    <option value="Konten">
-                        Konten
-                    </option>
-
-                    <option value="Saran Umum">
-                        Saran Umum
-                    </option>
-
-                    <option value="Lainnya">
-                        Lainnya
-                    </option>
-
-                </select>
-            </div>
-
-
-            <div class="form-group">
-                <label for="saran">Kritik / Saran</label>
-
-                <textarea
-                    id="saran"
-                    name="saran"
-                    rows="5"
-                    placeholder="Tuliskan kritik atau saran kamu..."
-                    required></textarea>
-            </div>
-
-
-            <button type="submit" class="btn-kritik">
-                📩 Kirim Kritik & Saran
-            </button>
-
-            <p id="statusKritik"></p>
-
-        </form>
-
-    </div>
-
-</section>
+    </section>
 
 
     <!-- FOOTER -->
@@ -498,103 +652,244 @@
         </p>
 
     </footer>
-<script>
-
-const scriptURL =
-"https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
 
 
-const form =
-document.getElementById("kritikForm");
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
 
-const status =
-document.getElementById("statusKritik");
+    <script>
 
-
-form.addEventListener("submit", function(e) {
-
-    e.preventDefault();
-
-    status.textContent = "Mengirim...";
+    const scriptURL =
+    "https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
 
 
-    const data =
-    new URLSearchParams();
+    /* ==========================================
+       KIRIM KRITIK & SARAN
+    =========================================== */
 
-    data.append(
-        "action",
-        "kritik"
-    );
+    const form =
+    document.getElementById("kritikForm");
 
-    data.append(
-        "nama",
-        document.getElementById("nama").value
-    );
-
-    data.append(
-        "asal",
-        document.getElementById("asal").value
-    );
-
-    data.append(
-        "kategori",
-        document.getElementById("kategori").value
-    );
-
-    data.append(
-        "saran",
-        document.getElementById("saran").value
-    );
+    const status =
+    document.getElementById("statusKritik");
 
 
-    fetch(scriptURL, {
+    form.addEventListener("submit", function(e) {
 
-        method: "POST",
+        e.preventDefault();
 
-        body: data
+        status.textContent = "Mengirim...";
 
-    })
 
-    .then(response =>
-        response.json()
-    )
+        const data =
+        new URLSearchParams();
 
-    .then(result => {
 
-        if (result.success) {
+        data.append(
+            "action",
+            "kritik"
+        );
 
-            status.innerHTML =
-            "✅ Kritik & saran berhasil dikirim!<br><br>" +
-            "<strong>Kode laporan kamu: " +
-            result.kode +
-            "</strong><br>" +
-            "Simpan kode ini untuk melihat tanggapan admin.";
+        data.append(
+            "nama",
+            document.getElementById("nama").value
+        );
 
-            form.reset();
+        data.append(
+            "asal",
+            document.getElementById("asal").value
+        );
 
-        } else {
+        data.append(
+            "kategori",
+            document.getElementById("kategori").value
+        );
+
+        data.append(
+            "saran",
+            document.getElementById("saran").value
+        );
+
+
+        fetch(scriptURL, {
+
+            method: "POST",
+
+            body: data
+
+        })
+
+        .then(response =>
+            response.json()
+        )
+
+        .then(result => {
+
+            if (result.success) {
+
+                status.innerHTML =
+                    "✅ Kritik & saran berhasil dikirim!<br><br>" +
+                    "<strong>Kode laporan kamu: " +
+                    result.kode +
+                    "</strong><br>" +
+                    "Simpan kode ini untuk melihat tanggapan admin.";
+
+                form.reset();
+
+            } else {
+
+                status.textContent =
+                    "❌ " + result.message;
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
 
             status.textContent =
-            "❌ " + result.message;
+                "❌ Gagal mengirim kritik & saran.";
 
-        }
-
-    })
-
-    .catch(error => {
-
-        console.error(error);
-
-        status.textContent =
-        "❌ Gagal mengirim kritik & saran.";
+        });
 
     });
 
-});
 
-</script>
+    /* ==========================================
+       CEK TANGGAPAN ADMIN
+    =========================================== */
 
+    function cekTanggapanAdmin() {
+
+        const kode =
+            document.getElementById("kodeCek")
+            .value
+            .trim();
+
+        const hasil =
+            document.getElementById("hasilTanggapan");
+
+
+        if (!kode) {
+
+            hasil.innerHTML =
+                "⚠️ Masukkan kode laporan terlebih dahulu.";
+
+            return;
+        }
+
+
+        hasil.innerHTML =
+            "🔄 Memeriksa tanggapan...";
+
+
+        fetch(
+            scriptURL +
+            "?action=cekTanggapan&kode=" +
+            encodeURIComponent(kode)
+        )
+
+        .then(response =>
+            response.json()
+        )
+
+        .then(result => {
+
+            if (!result.success) {
+
+                hasil.innerHTML =
+                    "❌ " + result.message;
+
+                return;
+            }
+
+
+            const data =
+                result.data;
+
+
+            if (
+                data.status ===
+                "Sudah Ditanggapi"
+            ) {
+
+                hasil.innerHTML =
+
+                    "<div style=\"" +
+                    "padding:20px;" +
+                    "background:#eaf4ec;" +
+                    "border-radius:16px;" +
+                    "\">" +
+
+                    "<strong>🟢 Sudah Ditanggapi</strong>" +
+
+                    "<br><br>" +
+
+                    "<strong>Tanggapan Admin:</strong>" +
+
+                    "<br>" +
+
+                    escapeHtml(
+                        data.tanggapan
+                    ) +
+
+                    "</div>";
+
+            } else {
+
+                hasil.innerHTML =
+
+                    "<div style=\"" +
+                    "padding:20px;" +
+                    "background:#f5f7f5;" +
+                    "border-radius:16px;" +
+                    "\">" +
+
+                    "<strong>🟡 Belum Ditanggapi</strong>" +
+
+                    "<br><br>" +
+
+                    "Kritik & saran kamu sudah diterima. " +
+                    "Silakan cek kembali nanti." +
+
+                    "</div>";
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            hasil.innerHTML =
+                "❌ Gagal memeriksa tanggapan.";
+
+        });
+
+    }
+
+
+    /* ==========================================
+       AMANKAN TAMPILAN TEKS
+    =========================================== */
+
+    function escapeHtml(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            text || "";
+
+        return div.innerHTML;
+
+    }
+
+    </script>
 
 </body>
 
-            </html>
+</html>
