@@ -9,16 +9,21 @@
     <link rel="stylesheet" href="dashboard.css">
 
     <style>
+        /* TOMBOL HAPUS */
         .btn-hapus {
-            margin-top: 12px;
             width: 100%;
-            border: none;
+            margin-top: 12px;
             padding: 11px 16px;
+
+            border: none;
+            border-radius: 12px;
+
             background: #f3e1df;
             color: #9b3f36;
-            border-radius: 12px;
+
             font-size: 14px;
             font-weight: bold;
+
             cursor: pointer;
         }
 
@@ -30,96 +35,302 @@
 
 <body>
 
-    <header class="dashboard-header">
-        <div>
-            <h1>Dashboard Admin</h1>
-            <p>Kelola Kritik & Saran Pengunjung</p>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="admin-navbar">
+
+        <div class="admin-logo">
+            🌿 Desa Sepinggan Kecil
         </div>
 
-        <button class="btn-logout" onclick="logout()">
-            🚪 Logout
-        </button>
-    </header>
+        <div class="admin-nav-right">
 
+            <span class="admin-name">
+                👤 Admin
+            </span>
 
-    <main class="dashboard-container">
-
-        <div class="dashboard-title">
-            <h2>📋 Data Kritik & Saran</h2>
-
-            <button class="btn-refresh" onclick="loadKritik()">
-                🔄 Refresh
+            <button
+                class="logout-button"
+                onclick="logout()"
+            >
+                🚪 Logout
             </button>
+
         </div>
 
-
-        <div id="loading" class="loading">
-            🔄 Memuat data...
-        </div>
+    </nav>
 
 
-        <div id="dataKritik" class="data-kritik"></div>
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <main class="dashboard">
+
+
+        <!-- =========================
+             WELCOME
+        ========================== -->
+
+        <section class="welcome">
+
+            <div class="welcome-label">
+                ADMIN DASHBOARD
+            </div>
+
+            <h1>
+                Selamat Datang, Admin 👋
+            </h1>
+
+            <p>
+                Kelola kritik dan saran dari pengunjung
+                website Desa Sepinggan Kecil.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             STATISTIK
+        ========================== -->
+
+        <section class="stats">
+
+
+            <!-- TOTAL -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💬
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Kritik & Saran
+                    </p>
+
+                    <h2 id="totalData">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BELUM -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📩
+                </div>
+
+                <div>
+
+                    <p>
+                        Belum Ditanggapi
+                    </p>
+
+                    <h2 id="belumData">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SUDAH -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <p>
+                        Sudah Ditanggapi
+                    </p>
+
+                    <h2 id="sudahData">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             DATA PENGUNJUNG
+        ========================== -->
+
+        <section class="data-section">
+
+
+            <div class="section-title">
+
+                <span>
+                    DATA PENGUNJUNG
+                </span>
+
+                <h2>
+                    Kritik & Saran
+                </h2>
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loading"
+                class="loading"
+            >
+                🔄 Memuat data...
+            </div>
+
+
+            <!-- DATA -->
+
+            <div
+                id="dataKritik"
+                class="data-kritik"
+            ></div>
+
+
+        </section>
 
     </main>
 
 
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 Desa Sepinggan Kecil
+    </footer>
+
+
+
     <script>
+
+
+        // ==============================
+        // URL GOOGLE APPS SCRIPT
+        // ==============================
 
         const SCRIPT_URL =
         "https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
+
 
 
         // ==============================
         // CEK LOGIN
         // ==============================
 
-        if (sessionStorage.getItem("adminLoggedIn") !== "true") {
-            window.location.href = "admin.html";
+        if (
+            sessionStorage.getItem("adminLoggedIn")
+            !== "true"
+        ) {
+
+            window.location.href =
+                "admin.html";
+
         }
 
 
+
         // ==============================
-        // LOAD DATA KRITIK & SARAN
+        // LOAD DATA
         // ==============================
 
         function loadKritik() {
 
-            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading")
+                .style.display = "block";
+
 
             const callbackName =
                 "callbackDashboard" + Date.now();
 
-            window[callbackName] = function(response) {
 
-                document.getElementById("loading").style.display = "none";
+            window[callbackName] =
+                function(response) {
 
-                if (!response.success) {
 
-                    document.getElementById("dataKritik").innerHTML =
-                        "<p>❌ Gagal mengambil data.</p>";
+                    document.getElementById("loading")
+                        .style.display = "none";
+
+
+                    if (!response.success) {
+
+                        document.getElementById(
+                            "dataKritik"
+                        ).innerHTML = `
+
+                            <div class="empty-data">
+
+                                <div class="empty-icon">
+                                    ⚠️
+                                </div>
+
+                                <h3>
+                                    Gagal memuat data
+                                </h3>
+
+                                <p>
+                                    Periksa koneksi dan URL
+                                    Google Apps Script.
+                                </p>
+
+                            </div>
+
+                        `;
+
+                        delete window[callbackName];
+
+                        return;
+                    }
+
+
+                    tampilkanData(response.data);
+
 
                     delete window[callbackName];
 
-                    return;
-                }
+                };
 
 
-                tampilkanData(response.data);
+            const script =
+                document.createElement("script");
 
-                delete window[callbackName];
-            };
-
-
-            const script = document.createElement("script");
 
             script.src =
                 SCRIPT_URL +
                 "?callback=" +
-                callbackName;
+                encodeURIComponent(callbackName);
 
 
             document.body.appendChild(script);
+
         }
+
 
 
         // ==============================
@@ -128,163 +339,314 @@
 
         function tampilkanData(data) {
 
+
             const container =
-                document.getElementById("dataKritik");
+                document.getElementById(
+                    "dataKritik"
+                );
 
 
-            if (!data || data.length === 0) {
+            // ==============================
+            // DATA KOSONG
+            // ==============================
+
+            if (
+                !data ||
+                data.length <= 1
+            ) {
+
+                document.getElementById(
+                    "totalData"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "belumData"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "sudahData"
+                ).textContent = "0";
+
 
                 container.innerHTML = `
+
                     <div class="empty-data">
-                        📭 Belum ada kritik atau saran.
+
+                        <div class="empty-icon">
+                            📭
+                        </div>
+
+                        <h3>
+                            Belum Ada Kritik & Saran
+                        </h3>
+
+                        <p>
+                            Data dari pengunjung
+                            akan muncul di sini.
+                        </p>
+
                     </div>
+
                 `;
 
                 return;
             }
 
 
-            // Lewati header spreadsheet
-            const rows = data.slice(1);
+
+            // ==============================
+            // LEWATI HEADER
+            // ==============================
+
+            const rows =
+                data.slice(1);
 
 
-            if (rows.length === 0) {
 
-                container.innerHTML = `
-                    <div class="empty-data">
-                        📭 Belum ada kritik atau saran.
-                    </div>
-                `;
+            // ==============================
+            // HITUNG STATISTIK
+            // ==============================
 
-                return;
-            }
+            const total =
+                rows.length;
 
 
-            container.innerHTML = rows.map(item => {
+            const sudah =
+                rows.filter(
+                    item =>
+                    item.status ===
+                    "Sudah Ditanggapi"
+                ).length;
 
-                const sudahDitanggapi =
-                    item.status === "Sudah Ditanggapi";
+
+            const belum =
+                total - sudah;
 
 
-                return `
 
-                    <div class="kritik-card">
+            document.getElementById(
+                "totalData"
+            ).textContent = total;
 
-                        <div class="kritik-header">
 
-                            <div>
-                                <h3>👤 ${escapeHTML(item.nama)}</h3>
+            document.getElementById(
+                "belumData"
+            ).textContent = belum;
 
-                                <span>
-                                    Kode: ${escapeHTML(item.kode)}
+
+            document.getElementById(
+                "sudahData"
+            ).textContent = sudah;
+
+
+
+            // ==============================
+            // TAMPILKAN CARD
+            // ==============================
+
+            container.innerHTML =
+                rows.map(item => {
+
+
+                    const sudahDitanggapi =
+                        item.status ===
+                        "Sudah Ditanggapi";
+
+
+                    return `
+
+                        <div class="kritik-card">
+
+
+                            <!-- BAGIAN ATAS -->
+
+                            <div class="kritik-header">
+
+                                <div>
+
+                                    <h3>
+                                        👤
+                                        ${escapeHTML(
+                                            item.nama
+                                        )}
+                                    </h3>
+
+                                    <span>
+                                        Kode:
+                                        ${escapeHTML(
+                                            item.kode
+                                        )}
+                                    </span>
+
+                                </div>
+
+
+                                <span
+                                    class="
+                                    status-badge
+                                    ${
+                                        sudahDitanggapi
+                                        ? "status-sudah"
+                                        : "status-belum"
+                                    }
+                                    "
+                                >
+
+                                    ${
+                                        sudahDitanggapi
+                                        ? "✓ Sudah Ditanggapi"
+                                        : "⏳ Belum Ditanggapi"
+                                    }
+
                                 </span>
+
                             </div>
 
-                            <span class="status-badge
-                                ${sudahDitanggapi
-                                    ? "status-sudah"
-                                    : "status-belum"}">
+
+
+                            <!-- INFORMASI -->
+
+                            <div class="kritik-info">
+
+
+                                <p>
+
+                                    <strong>
+                                        📍 Asal:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        item.asal
+                                    )}
+
+                                </p>
+
+
+                                <p>
+
+                                    <strong>
+                                        🏷️ Kategori:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        item.kategori
+                                    )}
+
+                                </p>
+
+
+                                <p>
+
+                                    <strong>
+                                        📅 Tanggal:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        item.tanggal
+                                    )}
+
+                                </p>
+
+
+                            </div>
+
+
+
+                            <!-- KRITIK / SARAN -->
+
+                            <div class="saran-box">
+
+                                <strong>
+                                    💬 Kritik / Saran
+                                </strong>
+
+                                <p>
+                                    ${
+                                        escapeHTML(
+                                            item.saran
+                                        ) || "-"
+                                    }
+                                </p>
+
+                            </div>
+
+
+
+                            <!-- TANGGAPAN -->
+
+                            <div class="tanggapan-box">
+
+                                <strong>
+                                    🛡️ Tanggapan Admin
+                                </strong>
+
 
                                 ${
                                     sudahDitanggapi
-                                    ? "✓ Sudah Ditanggapi"
-                                    : "⏳ Belum Ditanggapi"
+
+                                    ?
+
+                                    `
+
+                                    <div class="tanggapan-sudah">
+
+                                        ${escapeHTML(
+                                            item.tanggapan
+                                        )}
+
+                                    </div>
+
+                                    `
+
+                                    :
+
+                                    `
+
+                                    <textarea
+                                        id="tanggapan-${item.baris}"
+                                        placeholder="Tulis tanggapan untuk pengunjung..."
+                                    ></textarea>
+
+
+                                    <button
+                                        class="btn-tanggapan"
+                                        onclick="kirimTanggapan(${item.baris})"
+                                    >
+
+                                        💬 Simpan Tanggapan
+
+                                    </button>
+
+                                    `
                                 }
 
-                            </span>
+
+                            </div>
+
+
+
+                            <!-- TOMBOL HAPUS -->
+
+                            <button
+                                class="btn-hapus"
+                                onclick="hapusKritik(${item.baris})"
+                            >
+
+                                🗑️ Hapus Data
+
+                            </button>
+
 
                         </div>
 
+                    `;
 
-                        <div class="kritik-info">
+                }).join("");
 
-                            <p>
-                                <strong>📍 Asal:</strong>
-                                ${escapeHTML(item.asal)}
-                            </p>
-
-                            <p>
-                                <strong>🏷️ Kategori:</strong>
-                                ${escapeHTML(item.kategori)}
-                            </p>
-
-                            <p>
-                                <strong>📅 Tanggal:</strong>
-                                ${escapeHTML(item.tanggal)}
-                            </p>
-
-                        </div>
-
-
-                        <div class="saran-box">
-
-                            <strong>💬 Kritik / Saran</strong>
-
-                            <p>
-                                ${escapeHTML(item.saran)}
-                            </p>
-
-                        </div>
-
-
-                        <div class="tanggapan-box">
-
-                            <strong>🛡️ Tanggapan Admin</strong>
-
-                            ${
-                                sudahDitanggapi
-
-                                ?
-
-                                `
-                                <div class="tanggapan-sudah">
-
-                                    ${escapeHTML(item.tanggapan)}
-
-                                </div>
-                                `
-
-                                :
-
-                                `
-
-                                <textarea
-                                    id="tanggapan-${item.baris}"
-                                    placeholder="Tulis tanggapan untuk pengunjung..."
-                                ></textarea>
-
-                                <button
-                                    class="btn-tanggapan"
-                                    onclick="kirimTanggapan(${item.baris})"
-                                >
-
-                                    💬 Simpan Tanggapan
-
-                                </button>
-
-                                `
-                            }
-
-                        </div>
-
-
-                        <!-- TOMBOL HAPUS -->
-
-                        <button
-                            class="btn-hapus"
-                            onclick="hapusKritik(${item.baris})"
-                        >
-
-                            🗑️ Hapus Data
-
-                        </button>
-
-                    </div>
-
-                `;
-
-            }).join("");
         }
+
 
 
         // ==============================
@@ -293,13 +655,16 @@
 
         function kirimTanggapan(baris) {
 
+
             const textarea =
                 document.getElementById(
                     "tanggapan-" + baris
                 );
 
 
-            if (!textarea) return;
+            if (!textarea) {
+                return;
+            }
 
 
             const tanggapan =
@@ -308,36 +673,45 @@
 
             if (!tanggapan) {
 
-                alert("⚠️ Tanggapan belum diisi.");
+                alert(
+                    "⚠️ Tanggapan belum diisi."
+                );
 
                 return;
+
             }
 
 
             const callbackName =
-                "callbackTanggapan" + Date.now();
+                "callbackTanggapan" +
+                Date.now();
 
 
-            window[callbackName] = function(response) {
-
-                if (response.success) {
-
-                    alert("✅ Tanggapan berhasil disimpan.");
-
-                    loadKritik();
-
-                } else {
-
-                    alert(
-                        "❌ Gagal menyimpan tanggapan: " +
-                        (response.message || "")
-                    );
-
-                }
+            window[callbackName] =
+                function(response) {
 
 
-                delete window[callbackName];
-            };
+                    if (response.success) {
+
+                        alert(
+                            "✅ Tanggapan berhasil disimpan."
+                        );
+
+                        loadKritik();
+
+                    } else {
+
+                        alert(
+                            "❌ Gagal menyimpan tanggapan: " +
+                            (response.message || "")
+                        );
+
+                    }
+
+
+                    delete window[callbackName];
+
+                };
 
 
             const script =
@@ -352,11 +726,15 @@
                 "&tanggapan=" +
                 encodeURIComponent(tanggapan) +
                 "&callback=" +
-                encodeURIComponent(callbackName);
+                encodeURIComponent(
+                    callbackName
+                );
 
 
             document.body.appendChild(script);
+
         }
+
 
 
         // ==============================
@@ -365,9 +743,11 @@
 
         function hapusKritik(baris) {
 
-            const yakin = confirm(
-                "⚠️ Apakah kamu yakin ingin menghapus data ini?"
-            );
+
+            const yakin =
+                confirm(
+                    "⚠️ Apakah kamu yakin ingin menghapus data ini?"
+                );
 
 
             if (!yakin) {
@@ -376,29 +756,35 @@
 
 
             const callbackName =
-                "callbackHapus" + Date.now();
+                "callbackHapus" +
+                Date.now();
 
 
-            window[callbackName] = function(response) {
-
-                if (response.success) {
-
-                    alert("🗑️ Data berhasil dihapus.");
-
-                    loadKritik();
-
-                } else {
-
-                    alert(
-                        "❌ Gagal menghapus data: " +
-                        (response.message || "")
-                    );
-
-                }
+            window[callbackName] =
+                function(response) {
 
 
-                delete window[callbackName];
-            };
+                    if (response.success) {
+
+                        alert(
+                            "🗑️ Data berhasil dihapus."
+                        );
+
+                        loadKritik();
+
+                    } else {
+
+                        alert(
+                            "❌ Gagal menghapus data: " +
+                            (response.message || "")
+                        );
+
+                    }
+
+
+                    delete window[callbackName];
+
+                };
 
 
             const script =
@@ -411,11 +797,15 @@
                 "&baris=" +
                 encodeURIComponent(baris) +
                 "&callback=" +
-                encodeURIComponent(callbackName);
+                encodeURIComponent(
+                    callbackName
+                );
 
 
             document.body.appendChild(script);
+
         }
+
 
 
         // ==============================
@@ -424,23 +814,46 @@
 
         function escapeHTML(text) {
 
-            if (text === null || text === undefined) {
+
+            if (
+                text === null ||
+                text === undefined
+            ) {
+
                 return "";
+
             }
 
 
             return String(text)
 
-                .replace(/&/g, "&amp;")
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
 
-                .replace(/</g, "&lt;")
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
 
-                .replace(/>/g, "&gt;")
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
 
-                .replace(/"/g, "&quot;")
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
 
-                .replace(/'/g, "&#039;");
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
         }
+
 
 
         // ==============================
@@ -449,17 +862,21 @@
 
         function logout() {
 
+
             sessionStorage.removeItem(
                 "adminLoggedIn"
             );
 
+
             window.location.href =
                 "admin.html";
+
         }
 
 
+
         // ==============================
-        // LOAD DATA SAAT HALAMAN DIBUKA
+        // JALANKAN
         // ==============================
 
         loadKritik();
