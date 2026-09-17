@@ -499,7 +499,7 @@
 
     </footer>
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbw03pqlgLR-kJ0K2j-kciwQhJn6vDgWad0voFVHW7yNX9Fiwwah1rcnFhH3oQ2qlvfcyg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxdCWnGt0Vtt6K4MQ3G_q5RhCI0Gqxk6K8A8Ez8gt3Cqy-0yMNk6AzlcTSQ5v8hjgJAKA/exec";
 
 const form = document.getElementById("kritikForm");
 const status = document.getElementById("statusKritik");
@@ -509,40 +509,38 @@ form.addEventListener("submit", function(e) {
 
     status.textContent = "Mengirim...";
 
-    const iframe = document.createElement("iframe");
-    iframe.name = "kritikFrame";
-    iframe.style.display = "none";
-    document.body.appendChild(iframe);
+    const data = new URLSearchParams();
 
-    form.target = "kritikFrame";
-    form.action = scriptURL;
-    form.method = "POST";
+    data.append("action", "kritik");
+    data.append("nama", document.getElementById("nama").value);
+    data.append("asal", document.getElementById("asal").value);
+    data.append("kategori", document.getElementById("kategori").value);
+    data.append("saran", document.getElementById("saran").value);
 
-    const hiddenAction = document.createElement("input");
-    hiddenAction.type = "hidden";
-    hiddenAction.name = "action";
-    hiddenAction.value = "submitKritik";
+    fetch(scriptURL, {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.json())
+    .then(result => {
 
-    form.appendChild(hiddenAction);
+        if (result.success) {
+            status.textContent =
+                "✅ Kritik & saran berhasil dikirim!";
+            form.reset();
+        } else {
+            status.textContent =
+                "❌ " + result.message;
+        }
 
-    form.submit();
+    })
+    .catch(error => {
 
-    setTimeout(function() {
-        status.textContent = "✅ Kritik & saran berhasil dikirim!";
+        console.error(error);
 
-        form.reset();
-
-        hiddenAction.remove();
-
-        form.target = "";
-
-        form.action = "";
-
-        form.method = "GET";
-
-        iframe.remove();
-
-    }, 1500);
+        status.textContent =
+            "❌ Gagal mengirim kritik & saran.";
+    });
 });
 </script>
 
