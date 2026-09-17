@@ -117,6 +117,11 @@
             box-shadow: 0 7px 18px rgba(53, 104, 89, 0.2);
         }
 
+        .btn-kritik:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
         #statusKritik {
             text-align: center;
             margin-top: 18px;
@@ -177,6 +182,11 @@
             box-shadow: 0 7px 18px rgba(53, 104, 89, 0.15);
         }
 
+        .btn-cek:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
         #hasilTanggapan {
             margin-top: 20px;
             color: #40574b;
@@ -185,6 +195,7 @@
         }
 
         @media (max-width: 768px) {
+
             .kritik-section {
                 padding: 60px 15px;
             }
@@ -279,18 +290,20 @@
 
 <body>
 
-    <!-- TEST -->
+    <!-- TEST LOKASI -->
     <h1 style="color: red !important; font-size: 50px !important; text-align: center;">
         TES LOKASI
     </h1>
 
     <!-- NAVBAR -->
     <nav class="navbar">
+
         <div class="logo">
             🌿 <span>Desa Sepinggan Kecil</span>
         </div>
 
         <ul class="nav-links">
+
             <li>
                 <a href="index.html">Beranda</a>
             </li>
@@ -318,7 +331,9 @@
             <li>
                 <a href="admin.html" class="admin-link">Admin</a>
             </li>
+
         </ul>
+
     </nav>
 
 
@@ -334,7 +349,10 @@
         </div>
 
         <div class="lokasi-hero-content">
-            <span>📍 LOKASI DESA</span>
+
+            <span>
+                📍 LOKASI DESA
+            </span>
 
             <h1>
                 Temukan Sepinggan Kecil
@@ -343,6 +361,7 @@
             <p>
                 Kenali lokasi Desa Sepinggan Kecil dan temukan letaknya dengan mudah.
             </p>
+
         </div>
 
     </section>
@@ -370,33 +389,43 @@
 
                 <div class="lokasi-detail">
 
-                    <span>📌</span>
+                    <span>
+                        📌
+                    </span>
 
                     <div>
-                        <strong>Wilayah</strong>
+
+                        <strong>
+                            Wilayah
+                        </strong>
 
                         <p>
                             Kecamatan Semparuk, Kabupaten Sambas
                         </p>
+
                     </div>
 
                 </div>
 
-
                 <div class="lokasi-detail">
 
-                    <span>🌿</span>
+                    <span>
+                        🌿
+                    </span>
 
                     <div>
-                        <strong>Kalimantan Barat</strong>
+
+                        <strong>
+                            Kalimantan Barat
+                        </strong>
 
                         <p>
                             Indonesia
                         </p>
+
                     </div>
 
                 </div>
-
 
                 <div class="lokasi-koordinat">
 
@@ -409,7 +438,6 @@
                     </p>
 
                 </div>
-
 
                 <a
                     href="https://maps.app.goo.gl/rBFP2U5MNXbjNjPLA?g_st=aw"
@@ -460,8 +488,16 @@
             </div>
 
 
-            <!-- FORM -->
-            <form id="kritikForm">
+            <!--
+                PENTING:
+                Form dibuat tanpa submit.
+                Tombol di bawah menggunakan type="button".
+                Jadi halaman tidak reload dan tidak kembali ke atas.
+            -->
+            <form
+                id="kritikForm"
+                onsubmit="return false;"
+            >
 
                 <div class="form-group">
 
@@ -508,6 +544,7 @@
                         name="kategori"
                         required
                     >
+
                         <option value="">
                             Pilih kategori
                         </option>
@@ -535,6 +572,7 @@
                         <option value="Lainnya">
                             Lainnya
                         </option>
+
                     </select>
 
                 </div>
@@ -557,9 +595,15 @@
                 </div>
 
 
+                <!--
+                    TYPE BUTTON:
+                    Tidak melakukan submit form.
+                -->
                 <button
-                    type="submit"
+                    type="button"
                     class="btn-kritik"
+                    id="btnKirimKritik"
+                    onclick="kirimKritik()"
                 >
                     📩 Kirim Kritik &amp; Saran
                 </button>
@@ -592,6 +636,7 @@
                 <button
                     type="button"
                     class="btn-cek"
+                    id="btnCekTanggapan"
                     onclick="cekTanggapanAdmin()"
                 >
                     🔎 Cek Tanggapan
@@ -608,9 +653,11 @@
 
     <!-- FOOTER -->
     <footer class="footer">
+
         <p>
             © 2026 Desa Sepinggan Kecil. Semua hak dilindungi.
         </p>
+
     </footer>
 
 
@@ -625,80 +672,107 @@
         // KIRIM KRITIK & SARAN
         // ==========================================
 
-        document
-            .getElementById("kritikForm")
-            .addEventListener("submit", function (e) {
+        function kirimKritik() {
 
-                e.preventDefault();
+            const form =
+                document.getElementById("kritikForm");
 
-                const form = this;
+            const status =
+                document.getElementById("statusKritik");
 
-                const status =
-                    document.getElementById("statusKritik");
-
-                const nama =
-                    document.getElementById("nama").value.trim();
-
-                const asal =
-                    document.getElementById("asal").value.trim();
-
-                const kategori =
-                    document.getElementById("kategori").value;
-
-                const saran =
-                    document.getElementById("saran").value.trim();
+            const tombol =
+                document.getElementById("btnKirimKritik");
 
 
-                if (!nama || !asal || !kategori || !saran) {
+            const nama =
+                document.getElementById("nama").value.trim();
 
-                    status.textContent =
-                        "⚠️ Mohon lengkapi semua data.";
+            const asal =
+                document.getElementById("asal").value.trim();
 
-                    return;
-                }
+            const kategori =
+                document.getElementById("kategori").value;
 
+            const saran =
+                document.getElementById("saran").value.trim();
+
+
+            // VALIDASI
+            if (!nama || !asal || !kategori || !saran) {
 
                 status.textContent =
-                    "⏳ Mengirim kritik & saran...";
+                    "⚠️ Mohon lengkapi semua data.";
+
+                return;
+            }
 
 
-                const callbackName =
-                    "kritikCallback_" + Date.now();
+            // STATUS MENGIRIM
+            status.textContent =
+                "⏳ Mengirim kritik & saran...";
 
 
-                let selesai = false;
-                let script = null;
-                let timeoutId = null;
+            tombol.disabled = true;
 
 
-                function cleanup() {
+            const callbackName =
+                "kritikCallback_" + Date.now();
 
-                    delete window[callbackName];
 
-                    if (timeoutId) {
-                        clearTimeout(timeoutId);
-                    }
+            let selesai = false;
 
-                    if (script && script.parentNode) {
-                        script.parentNode.removeChild(script);
-                    }
+            let script = null;
+
+            let timeoutId = null;
+
+
+            function cleanup() {
+
+                delete window[callbackName];
+
+
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
                 }
 
 
-                window[callbackName] = function (result) {
+                if (
+                    script &&
+                    script.parentNode
+                ) {
 
-                    if (selesai) return;
+                    script.parentNode.removeChild(script);
+
+                }
+
+
+                tombol.disabled = false;
+            }
+
+
+            // CALLBACK DARI GOOGLE APPS SCRIPT
+            window[callbackName] =
+                function(result) {
+
+                    if (selesai) {
+                        return;
+                    }
+
 
                     selesai = true;
 
 
-                    if (result && result.success) {
+                    if (
+                        result &&
+                        result.success
+                    ) {
 
                         status.innerHTML =
-                            "✅ Kritik & saran berhasil dikirim!<br>" +
+                            "✅ Kritik &amp; saran berhasil dikirim!<br>" +
                             "Kode laporan kamu: <strong>" +
                             escapeHtml(result.kode) +
                             "</strong>";
+
 
                         form.reset();
 
@@ -707,62 +781,93 @@
                         status.textContent =
                             "❌ " +
                             (
-                                (result && result.message) ||
+                                (
+                                    result &&
+                                    result.message
+                                ) ||
                                 "Gagal mengirim data."
                             );
+
                     }
 
 
                     cleanup();
+
                 };
 
 
-                const params =
-                    "?action=kritik" +
-                    "&nama=" + encodeURIComponent(nama) +
-                    "&asal=" + encodeURIComponent(asal) +
-                    "&kategori=" + encodeURIComponent(kategori) +
-                    "&saran=" + encodeURIComponent(saran) +
-                    "&callback=" + encodeURIComponent(callbackName);
+            // PARAMETER YANG DIKIRIM
+            const params =
+                "?action=kritik" +
+                "&nama=" +
+                encodeURIComponent(nama) +
+                "&asal=" +
+                encodeURIComponent(asal) +
+                "&kategori=" +
+                encodeURIComponent(kategori) +
+                "&saran=" +
+                encodeURIComponent(saran) +
+                "&callback=" +
+                encodeURIComponent(callbackName);
 
 
-                script =
-                    document.createElement("script");
-
-                script.src =
-                    scriptURL + params;
+            // BUAT SCRIPT JSONP
+            script =
+                document.createElement("script");
 
 
-                script.onerror = function () {
+            script.src =
+                scriptURL + params;
 
-                    if (selesai) return;
+
+            script.onerror =
+                function() {
+
+                    if (selesai) {
+                        return;
+                    }
+
 
                     selesai = true;
+
 
                     status.textContent =
                         "❌ Gagal terhubung ke server.";
 
+
                     cleanup();
+
                 };
 
 
-                document.body.appendChild(script);
+            // KIRIM
+            document.body.appendChild(script);
 
 
-                timeoutId = setTimeout(function () {
+            // TIMEOUT
+            timeoutId =
+                setTimeout(
+                    function() {
 
-                    if (selesai) return;
+                        if (selesai) {
+                            return;
+                        }
 
-                    selesai = true;
 
-                    status.textContent =
-                        "❌ Waktu koneksi habis. Silakan coba lagi.";
+                        selesai = true;
 
-                    cleanup();
 
-                }, 15000);
+                        status.textContent =
+                            "❌ Waktu koneksi habis. Silakan coba lagi.";
 
-            });
+
+                        cleanup();
+
+                    },
+                    15000
+                );
+
+        }
 
 
         // ==========================================
@@ -772,10 +877,22 @@
         function cekTanggapanAdmin() {
 
             const kode =
-                document.getElementById("kodeCek").value.trim();
+                document
+                    .getElementById("kodeCek")
+                    .value
+                    .trim();
+
 
             const hasil =
-                document.getElementById("hasilTanggapan");
+                document.getElementById(
+                    "hasilTanggapan"
+                );
+
+
+            const tombol =
+                document.getElementById(
+                    "btnCekTanggapan"
+                );
 
 
             if (!kode) {
@@ -791,12 +908,17 @@
                 "🔄 Memeriksa tanggapan...";
 
 
+            tombol.disabled = true;
+
+
             const callbackName =
                 "cekCallback_" + Date.now();
 
 
             let selesai = false;
+
             let script = null;
+
             let timeoutId = null;
 
 
@@ -804,85 +926,111 @@
 
                 delete window[callbackName];
 
+
                 if (timeoutId) {
                     clearTimeout(timeoutId);
                 }
 
-                if (script && script.parentNode) {
+
+                if (
+                    script &&
+                    script.parentNode
+                ) {
+
                     script.parentNode.removeChild(script);
+
                 }
+
+
+                tombol.disabled = false;
             }
 
 
-            window[callbackName] = function (result) {
+            window[callbackName] =
+                function(result) {
 
-                if (selesai) return;
-
-                selesai = true;
-
-
-                if (!result || !result.success) {
-
-                    hasil.innerHTML =
-                        "❌ " +
-                        escapeHtml(
-                            (result && result.message) ||
-                            "Kode laporan tidak ditemukan."
-                        );
-
-                } else {
-
-                    const data =
-                        result.data || {};
+                    if (selesai) {
+                        return;
+                    }
 
 
-                    let html =
-                        "<strong>Kode:</strong> " +
-                        escapeHtml(data.kode) +
-                        "<br>" +
-
-                        "<strong>Nama:</strong> " +
-                        escapeHtml(data.nama) +
-                        "<br>" +
-
-                        "<strong>Kategori:</strong> " +
-                        escapeHtml(data.kategori) +
-                        "<br>" +
-
-                        "<strong>Status:</strong> " +
-                        escapeHtml(
-                            data.status ||
-                            "Belum Ditanggapi"
-                        ) +
-
-                        "<br><br>";
+                    selesai = true;
 
 
                     if (
-                        data.status ===
-                        "Sudah Ditanggapi"
+                        !result ||
+                        !result.success
                     ) {
 
-                        html +=
-                            "<strong>💬 Tanggapan Admin:</strong><br>" +
+                        hasil.innerHTML =
+                            "❌ " +
                             escapeHtml(
-                                data.tanggapan ||
-                                "Belum ada isi tanggapan."
+                                (
+                                    result &&
+                                    result.message
+                                ) ||
+                                "Kode laporan tidak ditemukan."
                             );
 
                     } else {
 
-                        html +=
-                            "⏳ Kritik atau saran kamu belum ditanggapi admin.";
+                        const data =
+                            result.data || {};
+
+
+                        let html =
+                            "<strong>Kode:</strong> " +
+                            escapeHtml(data.kode) +
+
+                            "<br>" +
+
+                            "<strong>Nama:</strong> " +
+                            escapeHtml(data.nama) +
+
+                            "<br>" +
+
+                            "<strong>Kategori:</strong> " +
+                            escapeHtml(data.kategori) +
+
+                            "<br>" +
+
+                            "<strong>Status:</strong> " +
+                            escapeHtml(
+                                data.status ||
+                                "Belum Ditanggapi"
+                            ) +
+
+                            "<br><br>";
+
+
+                        if (
+                            data.status ===
+                            "Sudah Ditanggapi"
+                        ) {
+
+                            html +=
+                                "<strong>💬 Tanggapan Admin:</strong><br>" +
+                                escapeHtml(
+                                    data.tanggapan ||
+                                    "Belum ada isi tanggapan."
+                                );
+
+                        } else {
+
+                            html +=
+                                "⏳ Kritik atau saran kamu belum ditanggapi admin.";
+                        }
+
+
+                        hasil.innerHTML =
+                            html;
+
                     }
 
 
-                    hasil.innerHTML = html;
-                }
+                    cleanup();
 
-
-                cleanup();
-            };
+                };
 
 
             script =
@@ -898,50 +1046,86 @@
                 encodeURIComponent(callbackName);
 
 
-            script.onerror = function () {
+            script.onerror =
+                function() {
 
-                if (selesai) return;
+                    if (selesai) {
+                        return;
+                    }
 
-                selesai = true;
 
-                hasil.innerHTML =
-                    "❌ Gagal terhubung ke server.";
+                    selesai = true;
 
-                cleanup();
-            };
+
+                    hasil.innerHTML =
+                        "❌ Gagal terhubung ke server.";
+
+
+                    cleanup();
+
+                };
 
 
             document.body.appendChild(script);
 
 
-            timeoutId = setTimeout(function () {
+            timeoutId =
+                setTimeout(
+                    function() {
 
-                if (selesai) return;
+                        if (selesai) {
+                            return;
+                        }
 
-                selesai = true;
 
-                hasil.innerHTML =
-                    "❌ Waktu koneksi habis. Silakan coba lagi.";
+                        selesai = true;
 
-                cleanup();
 
-            }, 15000);
+                        hasil.innerHTML =
+                            "❌ Waktu koneksi habis. Silakan coba lagi.";
+
+
+                        cleanup();
+
+                    },
+                    15000
+                );
 
         }
 
 
         // ==========================================
-        // AMANKAN OUTPUT HTML
+        // ESCAPE HTML
         // ==========================================
 
         function escapeHtml(text) {
 
             return String(text || "")
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
         }
 
     </script>
