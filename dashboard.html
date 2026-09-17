@@ -177,112 +177,124 @@ function logout() {
 // AMBIL DATA KRITIK
 // ==========================================
 
-async function loadKritik() {
+function loadKritik() {
 
-    const container =
-        document.getElementById("dataKritik");
+    const container = document.getElementById("dataKritik");
 
-    try {
+    container.innerHTML = `
+        <div class="loading-data">
+            Memuat data kritik & saran...
+        </div>
+    `;
 
-        const response =
-            await fetch(
-                SCRIPT_URL + "?action=dashboard"
-            );
+    const callbackName = "dashboardCallback_" + Date.now();
 
-        const result =
-            await response.json();
+    let script = document.createElement("script");
+
+    let selesai = false;
+
+    const timeoutId = setTimeout(function() {
+
+        if (selesai) return;
+
+        selesai = true;
+
+        container.innerHTML = `
+            <div class="empty-data">
+                <div class="empty-icon">⚠️</div>
+                <h3>Gagal memuat data</h3>
+                <p>Waktu koneksi ke Google Apps Script habis.</p>
+            </div>
+        `;
+
+        delete window[callbackName];
+
+        if (script.parentNode) {
+            script.parentNode.removeChild(script);
+        }
+
+    }, 15000);
 
 
-        if (!result.success) {
+    window[callbackName] = function(result) {
+
+        if (selesai) return;
+
+        selesai = true;
+
+        clearTimeout(timeoutId);
+
+        delete window[callbackName];
+
+        if (script.parentNode) {
+            script.parentNode.removeChild(script);
+        }
+
+
+        if (!result || !result.success) {
 
             container.innerHTML = `
                 <div class="empty-data">
                     <div class="empty-icon">⚠️</div>
                     <h3>Data tidak dapat dimuat</h3>
-                    <p>${result.message || "Terjadi kesalahan."}</p>
+                    <p>${escapeHTML(
+                        result && result.message
+                        ? result.message
+                        : "Terjadi kesalahan."
+                    )}</p>
                 </div>
             `;
 
             return;
-
         }
 
 
-        const data =
-            result.data || [];
+        const data = result.data || [];
 
 
-        // ======================================
         // STATISTIK
-        // ======================================
-
         document.getElementById("totalKritik").textContent =
             data.length;
 
+        const belum = data.filter(function(item) {
+            return item.status !== "Sudah Ditanggapi";
+        }).length;
 
-        const belum =
-            data.filter(item =>
-                item.status !== "Sudah Ditanggapi"
-            ).length;
-
-
-        const sudah =
-            data.filter(item =>
-                item.status === "Sudah Ditanggapi"
-            ).length;
-
+        const sudah = data.filter(function(item) {
+            return item.status === "Sudah Ditanggapi";
+        }).length;
 
         document.getElementById("belumDitanggapi").textContent =
             belum;
-
 
         document.getElementById("sudahDitanggapi").textContent =
             sudah;
 
 
-        // ======================================
-        // BELUM ADA DATA
-        // ======================================
-
+        // JIKA BELUM ADA DATA
         if (data.length === 0) {
 
             container.innerHTML = `
                 <div class="empty-data">
-
-                    <div class="empty-icon">
-                        💬
-                    </div>
-
-                    <h3>
-                        Belum ada kritik & saran
-                    </h3>
-
-                    <p>
-                        Data dari pengunjung akan muncul di sini.
-                    </p>
-
+                    <div class="empty-icon">💬</div>
+                    <h3>Belum ada kritik & saran</h3>
+                    <p>Data dari pengunjung akan muncul di sini.</p>
                 </div>
             `;
 
             return;
-
         }
 
 
-        // ======================================
         // TAMPILKAN DATA
-        // ======================================
-
         container.innerHTML = "";
 
 
         data.forEach(function(item) {
 
-            const card =
-                document.createElement("div");
+            const card = document.createElement("div");
 
-            card.className =
-                "kritik-card";
+            card.className = "kritik-card";
 
 
             const sudahDitanggapi =
@@ -355,24 +367,17 @@ async function loadKritik() {
 
                 <div class="tanggapan-box">
 
-                    <strong>
-                        🛡️ Tanggapan Admin
-                    </strong>
-
+                    <strong>🛡️ Tanggapan Admin</strong>
 
                     ${
                         sudahDitanggapi
-
                         ?
-
                         `
                         <div class="tanggapan-sudah">
                             ${escapeHTML(item.tanggapan)}
                         </div>
                         `
-
                         :
-
                         `
                         <textarea
                             id="tanggapan-${item.baris}"
@@ -392,42 +397,44 @@ async function loadKritik() {
 
             `;
 
-
             container.appendChild(card);
 
         });
 
-    }
+    };
 
 
-    catch (error) {
+    script.onerror = function() {
 
-        console.error(error);
+        if (selesai) return;
+
+        selesai = true;
+
+        clearTimeout(timeoutId);
+
+        delete window[callbackName];
 
         container.innerHTML = `
-
             <div class="empty-data">
-
-                <div class="empty-icon">
-                    ⚠️
-                </div>
-
-                <h3>
-                    Gagal memuat data
-                </h3>
-
-                <p>
-                    Periksa koneksi dan URL Google Apps Script.
-                </p>
-
+                <div class="empty-icon">⚠️</div>
+                <h3>Gagal memuat data</h3>
+                <p>Gagal terhubung ke Google Apps Script.</p>
             </div>
-
         `;
 
-    }
+    };
+
+
+    script.src =
+        SCRIPT_URL +
+        "?action=dashboard" +
+        "&callback=" +
+        encodeURIComponent(callbackName);
+
+
+    document.body.appendChild(script);
 
 }
-
 
 // ==========================================
 // KIRIM TANGGAPAN
